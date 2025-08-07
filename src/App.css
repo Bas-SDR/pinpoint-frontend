@@ -1,9 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*////////////////////////
+    1. Global Styles
+////////////////////////*/
+
+/* CSS Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Global Setup */
+body {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+          "wdth" 100;
+  color: #AD2831;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .content {
   margin: 32px;
+}
+
+/*////////////////////////
+    2. Typography
+////////////////////////*/
+/*Red colors:
+
+Black bean: #250902
+Black bean: #38040E
+Rosewood: #640D14
+Falu red: #800E13
+Auburn: #AD2831
+White: #ffffff
+*/
+
+h1 {
+  font-weight: 700;
+  font-size: 100px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 32px;
+  margin: 64px 0;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+a,
+a:link,
+
+a:hover {
+  text-decoration: none;
 }
