@@ -38,6 +38,7 @@ function NavBar() {
                         </li>
                     </ul>
                     <div>
+
                         <button
                             type="button"
                             onClick={() => navigate('/signin')}

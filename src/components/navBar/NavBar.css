@@ -32,7 +32,7 @@ button + button {
 .navbar-inner-box {
     display: flex;
     justify-content: space-between;
-    flex-basis: 1400px;
+    flex-basis: 100%;
     flex-shrink: 1;
     flex-grow: 0;
     align-items: center;
@@ -55,6 +55,9 @@ button:hover {
 button {
     flex-shrink: 1;
     flex-grow: 0;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px 32px;
 }
 
 .default-link {
