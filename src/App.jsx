@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import NavBar from "./components/navBar/NavBar.jsx";
+import {Route, Routes} from "react-router-dom";
+import Profile from "./pages/profilePage/Profile.jsx";
+import SignIn from "./pages/signInPage/SignIn.jsx";
+import SignUp from "./pages/signUpPage/SignUp.jsx";
+import Home from "./pages/homePage/Home.jsx";
+import NotFound from "./pages/notFoundPage/NotFound.jsx";
+import Competitions from "./pages/competitionsPage/Competitions.jsx";
+import Info from "./pages/infoPage/Info.jsx";
+import News from "./pages/newsPage/News.jsx";
+import Contact from "./pages/contactPage/Contact.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <>
+            <NavBar/>
+            <div className="content">
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/info" element={<Info/>}/>
+                    <Route path="/competitions" element={<Competitions/>}/>
+                    <Route path="/news" element={<News/>}/>
+                    <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/signin" element={<SignIn/>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="*" element={<NotFound/>}/>
+                </Routes>
+            </div>
+        </>
+    );
 }
 
 export default App
