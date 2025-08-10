@@ -1,9 +1,11 @@
 import './NavBar.css';
 import {useNavigate, NavLink} from 'react-router-dom'
+import {useContext} from "react";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function NavBar() {
     const navigate = useNavigate();
-
+    const {isAuth, login, logout} = useContext(AuthContext);
 
     return (
         <>
@@ -36,22 +38,43 @@ function NavBar() {
                             <NavLink to="/contact"
                                      className={({isActive}) => isActive === true ? "active-link" : "default-link"}>Contact</NavLink>
                         </li>
+                        {isAuth === true && //TODO Add check for role in JWT instead of login status.
+                        <li>
+                            <NavLink to="/admin"
+                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>Admin</NavLink>
+                        </li>}
                     </ul>
                     <div>
-
-                        <button
-                            type="button"
-                            onClick={() => navigate('/signin')}
-                        >
-                            Log in
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => navigate('/logout')}
-                            //TODO Add logout functionality and navigate to home page after logout
-                        >
-                            Log out
-                        </button>
+                        {isAuth ?
+                            <button
+                                type="button"
+                                onClick={() => navigate('/profile')}
+                            >
+                                My profile
+                            </button>
+                            :
+                            <button
+                                type="button"
+                                onClick={login}
+                            >
+                                Log in
+                            </button>
+                        }
+                        {isAuth ?
+                            <button
+                                type="button"
+                                onClick={logout}
+                            >
+                                Sign out
+                            </button>
+                            :
+                            <button
+                                type="button"
+                                onClick={() => navigate('/signup')}
+                            >
+                                Sign up
+                            </button>
+                        }
                     </div>
                 </div>
             </nav>
