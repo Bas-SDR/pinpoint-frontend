@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px 30px;
 }
 
 .image-container img {
@@ -9,5 +10,30 @@
     width: 15%;
     min-width: 150px;
     height: auto;
+    flex-shrink: 0;
+}
+
+.team-collection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 40px 80px 40px 80px;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.team {
+    border: 1px solid #250902;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-content: space-evenly;
+    min-width: 150px ;
+    max-width: 18%;
+    flex-grow: 1;
     flex-shrink: 0;
 }

@@ -24,9 +24,13 @@ button + button {
     border: dotted black;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 32px;
-    font-size: 20px;
+    padding: 4px 8px;
+    font-size: 14px;
     color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    flex-shrink: 1;
 }
 
 .navbar-inner-box {
@@ -43,7 +47,7 @@ button + button {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
-    gap: 40px;
+    gap: 8px;
     flex-shrink: 1;
     flex-grow: 0;
 }
@@ -56,8 +60,8 @@ button {
     flex-shrink: 1;
     flex-grow: 0;
     text-align: center;
-    font-size: 20px;
-    padding: 10px 32px;
+    font-size: 12px;
+    padding: 4px 6px;
 }
 
 .default-link {
@@ -66,4 +70,58 @@ button {
 
 .active-link {
     border-bottom: 2px solid #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-outer-box {
+        padding: 0 16px;
+        font-size: 16px;
+
+    }
+
+    .navbar-inner-box ul {
+        gap: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 16px;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+    .navbar-outer-box {
+        padding: 0 24px;
+        font-size: 18px;
+
+    }
+
+    .navbar-inner-box ul {
+        gap: 24px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 24px;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+    .navbar-outer-box {
+        padding: 0 32px;
+        font-size: 20px;
+
+    }
+
+    .navbar-inner-box ul {
+        gap: 30px;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 10px 32px;
+    }
+
 }
