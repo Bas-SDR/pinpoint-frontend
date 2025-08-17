@@ -7,5 +7,13 @@
     min-height: 300px;
     border: 1px solid #250902;
     padding: 15px;
+}
 
+.competition-link {
+    color: #AD2831;
+    text-decoration: none; /
+}
+
+.competition-link:hover {
+    color: #640D14;
 }

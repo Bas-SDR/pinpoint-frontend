@@ -32,6 +32,12 @@ main {
   margin: 32px;
 }
 
+nav a,
+nav a:visited,
+nav a:active {
+  color: #ffffff;
+}
+
 /*////////////////////////
     2. Typography
 ////////////////////////*/

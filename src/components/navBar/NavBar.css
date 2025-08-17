@@ -1,8 +1,4 @@
-nav a,
-nav a:visited,
-nav a:active {
-    color: #ffffff;
-}
+
 
 button {
     border-radius: 4px;
@@ -21,7 +17,6 @@ button + button {
 .navbar-outer-box {
     background-color: #AD2831;
     display: flex;
-    border: dotted black;
     flex-direction: row;
     justify-content: space-between;
     padding: 4px 8px;
@@ -62,6 +57,7 @@ button {
     text-align: center;
     font-size: 12px;
     padding: 4px 6px;
+    margin: 4px;
 }
 
 .default-link {
@@ -70,6 +66,10 @@ button {
 
 .active-link {
     border-bottom: 2px solid #ffffff;
+}
+
+.default-link:hover {
+    border-bottom: 2px solid #38040E;
 }
 
 @media screen and (min-width: 768px) {

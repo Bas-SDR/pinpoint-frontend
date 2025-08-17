@@ -1,7 +1,7 @@
-import './TeamCard.css';
-
 import React from "react";
 import "./TeamCard.css";
+import noLogo from "../../assets/teamlogo/nologo.png";
+import {Link} from "react-router-dom";
 
 const images = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", { eager: true });
 
@@ -16,11 +16,14 @@ function TeamCard({ teamId, teamName, teamPlayers }) {
         <div
             className="team-card"
         >
-            {logoImage && (
+            {logoImage ?
+                <Link to={`/teams/${teamId}`}>
                 <img className="team-logo" src={logoImage} alt={`${teamName} logo`} />
-            )}
-            {teamName ? <h2>{teamName}</h2> : <h2>No team</h2>}
-            {teamPlayers ? <p>Spelers: {teamPlayers}</p> : null}
+                </Link>
+                :
+                <img className="team-logo" src={noLogo} alt="No logo"/>}
+            {teamName ? <h2>{teamName}</h2> : <h2>Geen team</h2>}
+            {teamPlayers && <p>Spelers: {teamPlayers}</p>}
         </div>
     );
 }
