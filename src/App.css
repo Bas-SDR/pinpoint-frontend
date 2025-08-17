@@ -6,36 +6,49 @@
 
 /* CSS Reset */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Global Setup */
 body {
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-variation-settings:
-          "wdth" 100;
-  color: #AD2831;
-  padding-top: 24px;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    color: #AD2831;
+    padding-top: 24px;
 }
 
 main {
-  max-width: 1000px;
-  margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .content {
-  margin: 32px;
+    margin: 80px;
 }
 
 nav a,
 nav a:visited,
 nav a:active {
-  color: #ffffff;
+    color: #ffffff;
+}
+
+.outer-container-incl-sponsor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.outer-container-excl-sponsor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 1;
 }
 
 /*////////////////////////
@@ -50,76 +63,76 @@ Falu red: #800E13
 Auburn: #AD2831
 White: #ffffff
 */
+
 input,
 button {
-  font-family: inherit;
+    font-family: inherit;
 }
 
 a,
 a:link,
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
-  h1 {
-    font-weight: 700;
+
+h1 {
     font-size: 48px;
-  }
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
 
-  h2 {
-    font-weight: 700;
+h2 {
     font-size: 24px;
-  }
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
 
-  h1,
-  h2 {
+h1,
+h2 {
     text-align: center;
-  }
+}
 
-  h3 {
+h3 {
     font-weight: 700;
-    font-size: 18px;
-  }
-
-
+    font-size: 14px;
 }
 
 @media screen and (min-width: 994px) {
-  h1 {
-    font-weight: 700;
-    font-size: 64px;
-  }
+    h1 {
+        font-weight: 700;
+        font-size: 64px;
+    }
 
-  h2 {
-    font-weight: 700;
-    font-size: 28px;
-  }
+    h2 {
+        font-weight: 700;
+        font-size: 28px;
+    }
 
-  h1,
-  h2 {
-    text-align: center;
-  }
+    h1,
+    h2 {
+        text-align: center;
+    }
 }
 
 @media screen and (min-width: 1200px) {
 
-  h2 {
-    font-weight: 700;
-    font-size: 32px;
-  }
+    h2 {
+        font-weight: 700;
+        font-size: 32px;
+    }
 
-  h3 {
-    font-weight: 700;
-    font-size: 18px;
-  }
+    h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 1600px) {
-  h3 {
-    font-weight: 700;
-    font-size: 24px;
-  }
+    h3 {
+        font-weight: 700;
+        font-size: 24px;
+    }
 }
 
 

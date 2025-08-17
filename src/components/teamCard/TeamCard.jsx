@@ -13,11 +13,9 @@ function TeamCard({ teamId, teamName, teamPlayers }) {
     const logoImage = getImageById(teamId);
 
     return (
-        <div
-            className="team-card"
-        >
+        <div className="team-card">
             {logoImage ?
-                <Link to={`/teams/${teamId}`}>
+                <Link to={`/${teamId}`}>
                 <img className="team-logo" src={logoImage} alt={`${teamName} logo`} />
                 </Link>
                 :

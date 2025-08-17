@@ -1,0 +1,22 @@
+.sponsor-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.sponsor-logo {
+    width: 50px;
+    height: auto;
+    display: flex;
+    margin: 5px 0;
+}
+
+@media screen and (min-width: 1200px) {
+    .sponsor-logo {
+    width: 150px;
+    height: auto;
+    display: flex;
+    margin: 5px 0;
+    }
+}

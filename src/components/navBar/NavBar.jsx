@@ -6,6 +6,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 function NavBar() {
     const navigate = useNavigate();
     const {isAuth, login, logout} = useContext(AuthContext);
+    const checkActiveLink = ({isActive}) => isActive === true ? "active-link" : "default-link";
 
     return (
         <>
@@ -13,35 +14,28 @@ function NavBar() {
                 <div className="navbar-inner-box">
                     <ul>
                         <li>
-                            <NavLink to="/"
-                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>
+                            <NavLink to="/" className={checkActiveLink}>
                                 Home
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/info"
-                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>
+                            <NavLink to="/info" className={checkActiveLink}>
                                 Info
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/competitions"
-                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>
-                                Competitions
+                            <NavLink to="/competitions" className={checkActiveLink}>Competitions
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/news"
-                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>Nieuws</NavLink>
+                            <NavLink to="/news" className={checkActiveLink}>Nieuws</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/contact"
-                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>Contact</NavLink>
+                            <NavLink to="/contact" className={checkActiveLink}>Contact</NavLink>
                         </li>
                         {isAuth === true && //TODO Add check for role in JWT instead of login status.
                         <li>
-                            <NavLink to="/admin"
-                                     className={({isActive}) => isActive === true ? "active-link" : "default-link"}>Admin</NavLink>
+                            <NavLink to="/admin" className={checkActiveLink}>Admin</NavLink>
                         </li>}
                     </ul>
                     <div>

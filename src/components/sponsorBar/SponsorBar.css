@@ -1,0 +1,52 @@
+.sponsor-bar {
+    position: static;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    margin-top: 20px;
+    background: #f8f8f8;
+    z-index: 0;
+    flex-shrink: 1;
+}
+
+.sponsor-bar.left {
+    left: auto;
+}
+
+.sponsor-bar.right {
+    right: auto;
+}
+
+.sponsor-bar .sponsor-banner {
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 994px) {
+    .sponsor-bar {
+        position: fixed;
+        width: 10vw;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-top: 100px;
+        background-color: #f8f8f8;
+    }
+
+    .sponsor-bar.left {
+        left: 0;
+    }
+    .sponsor-bar.right {
+        right: 0;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .sponsor-bar{
+        padding-top: 100px;
+        width: 15vw;
+    }
+}

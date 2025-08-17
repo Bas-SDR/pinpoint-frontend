@@ -1,4 +1,5 @@
 import './Admin.css';
+import SponsorImage from "../../components/sponsorImage/SponsorImage.jsx";
 
 function Admin() {
     return (
