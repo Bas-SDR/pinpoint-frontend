@@ -12,10 +12,9 @@ function Profile() {
     const {isAuth} = useContext(AuthContext);
 
     return (
-        <>
+        <div className="outer-container-excl-sponsor">
             <h2>Profiel van</h2>
             <h1>Voornaam Achternaam</h1>{/*TODO Add first and last name from JWT token*/}
-            <div className="outer-profile-container">
                 <div className="inner-profile-container">
                     <span className="image-container">
                     <img src={profilePic} alt="photo of player"/>
@@ -29,7 +28,6 @@ function Profile() {
                     // TODO Replace profile ID with ID from database, and modify to logical link
                     }
                 </div>
-            </div>
             <div className="team-collection">
                 {/*TODO Add mapping from database instead of hardcoded*/}
                 <div className="team">
@@ -100,7 +98,7 @@ function Profile() {
                 averagePinfall="522"
                 perfectGames="3"
             />
-        </>
+        </div>
     );
 }
 
