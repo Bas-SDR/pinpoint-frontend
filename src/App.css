@@ -41,6 +41,8 @@ nav a:active {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 .outer-container-excl-sponsor {
@@ -78,18 +80,15 @@ a:hover {
 
 h1 {
     font-size: 48px;
-    margin-left: 10vw;
-    margin-right: 10vw;
 }
 
 h2 {
     font-size: 24px;
-    margin-left: 10vw;
-    margin-right: 10vw;
 }
 
 h1,
 h2 {
+    font-weight: 700;
     text-align: center;
 }
 
