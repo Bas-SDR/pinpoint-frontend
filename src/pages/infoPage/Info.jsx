@@ -4,13 +4,11 @@ import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
 
 function Info() {
     return (
-        <>
+        <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
-            <div className="outer-container-incl-sponsor">
             <h1>Vereniging XXYYZZ info</h1>
             <h2>Wij zijn vereniging XXYYZZ en onze speellocatie is Bowlinghuis AABBCC in Arnhem</h2>
-            <div >
-                <div className="management-collection">
+                <article className="management-collection">
                     <NameCard
                         userId={1}
                         userName="Piet Jan"
@@ -65,11 +63,9 @@ function Info() {
                         userEmail=""
                         userFunction=""
                     />
-                </div>
-            </div>
+                </article>
             <SponsorBar sponsorLocation="right"/>
-            </div>
-        </>
+        </div>
     );
 }
 
