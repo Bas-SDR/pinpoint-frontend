@@ -13,7 +13,7 @@ function NameCard({userId, userName, userFunction, userEmail}) {
     const userImage = getImageById(userId);
 
     return (
-        <div className="management-card">
+        <div className="management-card hover-effect">
             {userImage ?
                 <Link to={`/profile/${userId}`}>
                     <img className="management-profile-pic" src={userImage} alt={`${userFunction} profile picture`}/>

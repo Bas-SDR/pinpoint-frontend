@@ -9,7 +9,7 @@ function News() {
     return (
         <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
-
+            <h1>Laatste nieuws</h1>
             <article className="news-article">
                 <InfoTile tileTitle={"Seizoen voorbij!"} tileOrientation="left" tileType="text">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur dignissimos dolores
@@ -21,7 +21,8 @@ function News() {
                 <InfoTile tileImage={newsArt1} imageAltTile={"News Article 1"} tileOrientation="left" tileType="image"/>
             </article>
             <article className="news-article">
-                <InfoTile tileImage={newsArt2} imageAltTile={"News Article 2"} tileOrientation="right" tileType="image"/>
+                <InfoTile tileImage={newsArt2} imageAltTile={"News Article 2"} tileOrientation="right"
+                          tileType="image"/>
                 <InfoTile tileTitle={"Finale dag volgende week"} tileOrientation="right" tileType="text">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur dignissimos dolores
                         nam nisi optio rem sapiente ullam, vero! Accusamus aliquid culpa cumque cupiditate et hic magnam
