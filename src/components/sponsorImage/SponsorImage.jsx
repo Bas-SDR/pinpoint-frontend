@@ -6,7 +6,7 @@ function SponsorImage({ logo, sponsorName }) {
     return (
         <span className="sponsor-banner">
             <img
-                className="sponsor-logo hover-effect"
+                className="sponsor-logo hover"
                 src={logo || noLogo}
                 alt={`${sponsorName} logo`}
             />

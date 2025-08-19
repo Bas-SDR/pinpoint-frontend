@@ -24,8 +24,3 @@ export const sponsorsRight = [
     { id: 9, name: "Sponsor 9", logo: sponsor9 },
 ];
 
-console.log(sponsor1)
-console.log(sponsor2)
-console.log(sponsor3)
-
-
