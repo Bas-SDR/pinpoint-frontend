@@ -1,87 +1,212 @@
-{
-  "news": [
-    {
-      "id": 1,
-      "date": "2025-05-30",
-      "content": [
-        {
-          "tileType": "text",
-          "title": "Seizoen voorbij!",
-          "paragraphs": [
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur dignissimos dolores nam nisi optio rem sapiente ullam, vero! Accusamus aliquid culpa cumque cupiditate et hic magnam magni odit voluptates!",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut doloremque eligendi error et eveniet, impedit ipsam iure optio quae reiciendis sed sit sunt tempore!"
-          ]
-        },
-        {
-          "tileType": "image",
-          "image": {
-            "src": "/News/NewsArt1.svg",
-            "alt": "News Article 1"
-          }
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "date": "2025-06-06",
-      "content": [
-        {
-          "tileType": "text",
-          "title": "Finale dag volgende week",
-          "paragraphs": [
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda, beatae debitis deserunt doloremque doloribus dolorum, eum hic iure minus officiis pariatur quaerat, quo ratione rem sunt voluptatem? Libero neque nostrum numquam quibusdam quod repellendus, totam voluptatibus voluptatum. Labore, obcaecati!"
-          ]
-        },
-        {
-          "tileType": "image",
-          "image": {
-            "src": "/News/NewsArt2.svg",
-            "alt": "News Article 2"
-          }
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "date": "2025-06-15",
-      "content": [
-        {
-          "tileType": "text",
-          "title": "Laatste competitie dagen",
-          "paragraphs": [
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur dignissimos dolores nam nisi optio rem sapiente ullam, vero! Accusamus aliquid culpa cumque cupiditate et hic magnam magni odit voluptates!",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut doloremque eligendi error et eveniet, impedit ipsam iure optio quae reiciendis sed sit sunt tempore!"
-          ]
-        },
-        {
-          "tileType": "image",
-          "image": {
-            "src": "/News/NewsArt3.svg",
-            "alt": "News Article 3"
-          }
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "date": "2025-06-15",
-      "content": [
-        {
-          "tileType": "text",
-          "title": "Wintervakantie!",
-          "paragraphs": [
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur dignissimos dolores nam nisi optio rem sapiente ullam, vero! Accusamus aliquid culpa cumque cupiditate et hic magnam magni odit voluptates!",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut doloremque eligendi error et eveniet, impedit ipsam iure optio quae reiciendis sed sit sunt tempore!"
-          ]
-        },
-        {
-          "tileType": "image",
-          "image": {
-            "src": "/News/NewsArt3.svg",
-            "alt": "News Article 3"
-          }
-        }
-      ]
+[
+  {
+    "playerId": 1,
+    "firstName": "Lucas",
+    "lastName": "Vermeer",
+    "profilePic": "/assets/profile-pic-man1.png",
+    "teamIds": [
+      1,
+      2,
+      3
+    ],
+    "leagueIds": [
+      1,
+      2
+    ],
+    "averageScore": 162,
+    "stats": {
+      "highestGame": 279,
+      "highestSeries": 698,
+      "totalPinfall": 18452,
+      "averagePinfall": 521,
+      "perfectGames": 2
     }
-  ]
-}
+  },
+  {
+    "playerId": 2,
+    "firstName": "Sven",
+    "lastName": "Kramer",
+    "profilePic": "/assets/profile-pic-man2.png",
+    "teamIds": [
+      2
+    ],
+    "leagueIds": [
+      2
+    ],
+    "averageScore": 134,
+    "stats": {
+      "highestGame": 210,
+      "highestSeries": 560,
+      "totalPinfall": 11234,
+      "averagePinfall": 436,
+      "perfectGames": 0
+    }
+  },
+  {
+    "playerId": 3,
+    "firstName": "Daan",
+    "lastName": "Visser",
+    "profilePic": "/assets/profile-pic-man3.png",
+    "teamIds": [
+      4
+    ],
+    "leagueIds": [
+      3
+    ],
+    "averageScore": 145,
+    "stats": {
+      "highestGame": 242,
+      "highestSeries": 590,
+      "totalPinfall": 14321,
+      "averagePinfall": 478,
+      "perfectGames": 1
+    }
+  },
+  {
+    "playerId": 4,
+    "firstName": "Mark",
+    "lastName": "Janssen",
+    "profilePic": "/assets/profile-pic-man4.png",
+    "teamIds": [
+      3,
+      4
+    ],
+    "leagueIds": [
+      3,
+      4
+    ],
+    "averageScore": 171,
+    "stats": {
+      "highestGame": 288,
+      "highestSeries": 701,
+      "totalPinfall": 19872,
+      "averagePinfall": 512,
+      "perfectGames": 1
+    }
+  },
+  {
+    "playerId": 5,
+    "firstName": "Tom",
+    "lastName": "Meijer",
+    "profilePic": "/assets/profile-pic-man5.png",
+    "teamIds": [
+      1,
+      5
+    ],
+    "leagueIds": [
+      5
+    ],
+    "averageScore": 128,
+    "stats": {
+      "highestGame": 205,
+      "highestSeries": 534,
+      "totalPinfall": 9850,
+      "averagePinfall": 410,
+      "perfectGames": 0
+    }
+  },
+  {
+    "playerId": 6,
+    "firstName": "Joost",
+    "lastName": "Kuiper",
+    "profilePic": "/assets/profile-pic-man6.png",
+    "teamIds": [
+      6
+    ],
+    "leagueIds": [
+      6
+    ],
+    "averageScore": 155,
+    "stats": {
+      "highestGame": 250,
+      "highestSeries": 620,
+      "totalPinfall": 15422,
+      "averagePinfall": 490,
+      "perfectGames": 0
+    }
+  },
+  {
+    "playerId": 7,
+    "firstName": "Bas",
+    "lastName": "Hoekstra",
+    "profilePic": "/assets/profile-pic-man7.png",
+    "teamIds": [
+      2,
+      6
+    ],
+    "leagueIds": [
+      2,
+      6
+    ],
+    "averageScore": 167,
+    "stats": {
+      "highestGame": 270,
+      "highestSeries": 670,
+      "totalPinfall": 17654,
+      "averagePinfall": 505,
+      "perfectGames": 1
+    }
+  },
+  {
+    "playerId": 8,
+    "firstName": "Arjen",
+    "lastName": "Mulder",
+    "profilePic": "/assets/profile-pic-man8.png",
+    "teamIds": [
+      5
+    ],
+    "leagueIds": [
+      5
+    ],
+    "averageScore": 120,
+    "stats": {
+      "highestGame": 190,
+      "highestSeries": 490,
+      "totalPinfall": 8645,
+      "averagePinfall": 378,
+      "perfectGames": 0
+    }
+  },
+  {
+    "playerId": 9,
+    "firstName": "Koen",
+    "lastName": "Schouten",
+    "profilePic": "/assets/profile-pic-man9.png",
+    "teamIds": [
+      3
+    ],
+    "leagueIds": [
+      4
+    ],
+    "averageScore": 182,
+    "stats": {
+      "highestGame": 300,
+      "highestSeries": 710,
+      "totalPinfall": 22400,
+      "averagePinfall": 540,
+      "perfectGames": 3
+    }
+  },
+  {
+    "playerId": 10,
+    "firstName": "Joris",
+    "lastName": "Peeters",
+    "profilePic": "/assets/profile-pic-man10.png",
+    "teamIds": [
+      4,
+      6
+    ],
+    "leagueIds": [
+      3,
+      6
+    ],
+    "averageScore": 152,
+    "stats": {
+      "highestGame": 240,
+      "highestSeries": 610,
+      "totalPinfall": 13220,
+      "averagePinfall": 462,
+      "perfectGames": 0
+    }
+  }
+]

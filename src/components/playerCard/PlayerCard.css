@@ -4,9 +4,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 300px;
+    height: 150px;
     border: 1px solid #250902;
     padding: 15px;
+    border-radius: 12px;
+    background-color: #fff8f0;
+    box-shadow: 0 2px 6px #00000014; /* 0.08 opacity */
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .competition-link {

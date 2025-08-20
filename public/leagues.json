@@ -1,0 +1,38 @@
+[
+  {
+    "leagueId": 1,
+    "leagueName": "Monday League",
+    "day": "Monday",
+    "division": "A"
+  },
+  {
+    "leagueId": 2,
+    "leagueName": "Tuesday Night",
+    "day": "Tuesday",
+    "division": "B"
+  },
+  {
+    "leagueId": 3,
+    "leagueName": "Wednesday League",
+    "day": "Wednesday",
+    "division": "A"
+  },
+  {
+    "leagueId": 4,
+    "leagueName": "Thursday Masters",
+    "day": "Thursday",
+    "division": "Pro"
+  },
+  {
+    "leagueId": 5,
+    "leagueName": "Weekend Open",
+    "day": "Saturday",
+    "division": "C"
+  },
+  {
+    "leagueId": 6,
+    "leagueName": "Friday Night Lights",
+    "day": "Friday",
+    "division": "B"
+  }
+]
