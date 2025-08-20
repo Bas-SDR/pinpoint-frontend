@@ -7,13 +7,14 @@ import StatsCard from "../../components/statsCard/StatsCard.jsx";
 import React, {useContext} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
+import Header from "../../components/header/Header.jsx";
 
 function Profile() {
     const {isAuth} = useContext(AuthContext);
 
     return (
         <div className="outer-container-excl-sponsor">
-            <h2>Profiel van</h2>
+            <Header pageTitle="Profiel van"/>
             <h1>Voornaam Achternaam</h1>{/*TODO Add first and last name from JWT token*/}
                 <div className="inner-profile-container">
                     <span className="image-container">

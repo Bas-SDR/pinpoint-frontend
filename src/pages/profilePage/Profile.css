@@ -15,7 +15,7 @@
     height: auto;
     flex-shrink: 0;
     border: #AD2831 solid 1px;
-    box-shadow: 0 0 10px rgba(2,0,0,0.21);
+    box-shadow: 0 0 10px #02000036;
 }
 
 .team-collection {

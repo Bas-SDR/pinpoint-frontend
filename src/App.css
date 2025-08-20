@@ -41,8 +41,8 @@ nav a:active {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .outer-container-excl-sponsor {
@@ -51,6 +51,12 @@ nav a:active {
     justify-content: center;
     align-items: center;
     flex-shrink: 1;
+}
+
+.hover-effect:hover {
+    box-shadow: 0 8px 20px #00000040,
+    0 0 12px #bc4c2a66;
+    transform: translateY(-4px);
 }
 
 /*////////////////////////
@@ -112,6 +118,11 @@ h3 {
     h2 {
         text-align: center;
     }
+
+    .outer-container-incl-sponsor{
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -124,6 +135,11 @@ h3 {
     h3 {
         font-weight: 700;
         font-size: 18px;
+    }
+
+    .outer-container-incl-sponsor {
+        padding-left: 15vw;
+        padding-right: 15vw;
     }
 }
 
