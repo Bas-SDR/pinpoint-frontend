@@ -23,4 +23,3 @@ export const sponsorsRight = [
     { id: 8, name: "Sponsor 8", logo: sponsor8 },
     { id: 9, name: "Sponsor 9", logo: sponsor9 },
 ];
-

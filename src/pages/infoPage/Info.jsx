@@ -1,11 +1,13 @@
 import './Info.css';
 import NameCard from "../../components/nameCard/NameCard.jsx";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
+import Header from "../../components/header/Header.jsx";
 
 function Info() {
     return (
         <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
+            <Header pageTitle="Info over de vereniging"/>
             <h1>Vereniging XXYYZZ info</h1>
             <h2>Wij zijn vereniging XXYYZZ en onze speellocatie is Bowlinghuis AABBCC in Arnhem</h2>
                 <article className="management-collection">

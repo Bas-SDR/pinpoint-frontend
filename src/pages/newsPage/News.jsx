@@ -1,11 +1,9 @@
 import './News.css';
 import InfoTile from "../../components/infoTile/InfoTile.jsx";
-import newsArt1 from "../../../public/News/NewsArt1.svg";
-import newsArt2 from "../../../public/News/NewsArt2.svg";
-import newsArt3 from "../../../public/News/NewsArt3.svg";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Header from "../../components/header/Header.jsx";
 
 function News() {
     const [newsArticles, setNewsArticles] = useState([]);
@@ -42,9 +40,10 @@ function News() {
     return (
         <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
-            <h1>Laatste nieuws</h1>
-            {newsArticles.map((newsArticle) => {
-                const baseOrientation = newsArticle.id % 2 === 0 ? "left" : "right";
+            <Header pageTitle="Laatste nieuws"/>
+            {newsArticles.map((newsArticle, index) => {
+
+                const baseOrientation = index % 2 === 0 ? "left" : "right";
                 return (
                     <article key={newsArticle.id} className={`news-article ${baseOrientation}`}>
                         {newsArticle.content.map((content, tileIndex) => (
@@ -64,7 +63,6 @@ function News() {
                         {newsArticle.length === 0 && error && <p>Er is geen nieuws beschikbaar</p>}
                     </article>
                 );
-
             })}
             <SponsorBar sponsorLocation="right"/>
         </div>
