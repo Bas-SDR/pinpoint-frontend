@@ -2,6 +2,8 @@ import './NavBar.css';
 import {useNavigate, NavLink} from 'react-router-dom'
 import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import Button from "../button/Button.jsx";
+import button from "../button/Button.jsx";
 
 function NavBar() {
     const navigate = useNavigate();
@@ -40,34 +42,34 @@ function NavBar() {
                     </ul>
                     <div>
                         {isAuth ?
-                            <button
+                            <Button
                                 type="button"
                                 onClick={() => navigate('/profile')}
                             >
                                 My profile
-                            </button>
+                            </Button>
                             :
-                            <button
+                            <Button
                                 type="button"
                                 onClick={login}
                             >
                                 Log in
-                            </button>
+                            </Button>
                         }
                         {isAuth ?
-                            <button
+                            <Button
                                 type="button"
                                 onClick={logout}
                             >
                                 Sign out
-                            </button>
+                            </Button>
                             :
-                            <button
+                            <Button
                                 type="button"
                                 onClick={() => navigate('/signup')}
                             >
                                 Sign up
-                            </button>
+                            </Button>
                         }
                     </div>
                 </div>

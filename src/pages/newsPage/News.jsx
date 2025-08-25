@@ -40,7 +40,7 @@ function News() {
     return (
         <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
-            <Header pageTitle="Laatste nieuws"/>
+            <Header>Laatste Nieuws</Header>
             {newsArticles.map((newsArticle, index) => {
 
                 const baseOrientation = index % 2 === 0 ? "left" : "right";

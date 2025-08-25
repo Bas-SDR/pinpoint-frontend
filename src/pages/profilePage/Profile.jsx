@@ -64,7 +64,7 @@ function Profile() {
 
     return (
         <div className="outer-container-excl-sponsor">
-            <Header pageTitle="Profiel van"/>
+            <Header>Profiel van</Header>
             {players.length > 0 && <h1>{`${players[userId - 1].firstName} ${players[userId - 1].lastName}`}</h1>}
             {/*TODO Add first and last name from profile page id number*/}
             <div className="inner-profile-container">
