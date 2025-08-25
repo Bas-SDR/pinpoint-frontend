@@ -9,7 +9,7 @@
     width: 220px;
     height: 320px;
     box-sizing: border-box;
-
+    word-break: break-word;
 }
 
 .management-profile-pic,
@@ -21,8 +21,8 @@
 
 @media screen and (min-width: 1200px) {
     .management-card {
-        width: 260px;
-        height: 360px;
+        width: 187px;
+        height: 350px;
     }
     .management-profile-pic,
     .no-logo {
@@ -33,7 +33,7 @@
 
 @media screen and (min-width: 1600px) {
     .management-card {
-        width: 300px;
+        width: 250px;
         height: 400px;
     }
     .management-profile-pic,
