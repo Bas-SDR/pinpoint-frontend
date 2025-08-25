@@ -13,6 +13,7 @@ import Contact from "./pages/contactPage/Contact.jsx";
 import {AuthContext} from "./context/AuthContext.jsx";
 import {useContext} from "react";
 import Admin from "./pages/adminPage/Admin.jsx";
+import Privacy from "./pages/privacy/Privacy.jsx";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/profile" element={isAuth ? <Profile/> : <Navigate to="/" />}/>
                     <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/" />}/> {/*TODO Make check on role instead of isAuth*/}
+                    <Route path="/privacy" element={<Privacy/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </div>

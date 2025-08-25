@@ -1,9 +1,9 @@
 import './Header.css';
 
-function Header({ pageTitle }) {
+function Header({ children }) {
     return (
         <header>
-            <h1>{pageTitle}</h1>
+            <h1>{children}</h1>
         </header>
     );
 }
