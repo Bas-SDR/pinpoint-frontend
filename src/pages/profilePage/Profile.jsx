@@ -8,56 +8,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 import Header from "../../components/header/Header.jsx";
-import axios from "axios";
+import useProfileData from "../../hooks/useProfileData.js";
+import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
+// import axios from "axios";
 
 function Profile() {
 
     const {isAuth, userId} = useContext(AuthContext);
-    const [teams, setTeams] = useState([]);
-    const [leagues, setLeagues] = useState([]);
-    const [players, setPlayers] = useState([]);
-    const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(true);
-
-    useEffect(() => {
-        // const controller = new AbortController();
-        toggleLoading(true);
-
-        async function fetchProfileData() {
-            //https://stackoverflow.com/questions/35612428/call-async-await-functions-in-parallel
-            toggleError(false);
-            try {
-                const [teamResult, leagueResult, playerResult] = await Promise.all([
-                    axios.get("teams.json", {
-                        //  signal: controller.signal
-                    }),
-                    axios.get("leagues.json", {
-                        //  signal: controller.signal
-                    }),
-                    axios.get("players.json", {
-                        //  signal: controller.signal
-                    }),
-                ]);
-
-                setTeams(teamResult.data);
-                setLeagues(leagueResult.data);
-                setPlayers(playerResult.data);
-                toggleLoading(false);
-            } catch (e) {
-                console.error(e);
-                toggleError(true);
-            }
-        }
-
-        fetchProfileData();
-
-        // return function cleanUp() {
-        //     controller.abort();
-        // }
-
-    }, []);
-
-
+    const { teams, leagues, players, loading, error } = useProfileData();
     const currentPlayer = players.find(p => p.playerId === userId);
     // TODO Change this to check link (profile/1) in order to set the userID.
     const playerTeams = currentPlayer ? teams.filter(team => currentPlayer.teamIds.includes(team.teamId)) : [];
@@ -65,6 +23,7 @@ function Profile() {
     return (
         <div className="outer-container-excl-sponsor">
             <Header>Profiel van</Header>
+            <StatusMessage loading={loading} error={error}/>
             {players.length > 0 && <h1>{`${players[userId - 1].firstName} ${players[userId - 1].lastName}`}</h1>}
             {/*TODO Add first and last name from profile page id number*/}
             <div className="inner-profile-container">

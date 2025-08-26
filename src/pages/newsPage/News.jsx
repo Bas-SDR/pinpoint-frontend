@@ -1,9 +1,10 @@
 import './News.css';
 import InfoTile from "../../components/infoTile/InfoTile.jsx";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Header from "../../components/header/Header.jsx";
+import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 
 function News() {
     const [newsArticles, setNewsArticles] = useState([]);
@@ -41,6 +42,7 @@ function News() {
         <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
             <Header>Laatste Nieuws</Header>
+            <StatusMessage loading={loading} error={error}/>
             {newsArticles.map((newsArticle, index) => {
 
                 const baseOrientation = index % 2 === 0 ? "left" : "right";

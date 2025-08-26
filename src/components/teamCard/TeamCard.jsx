@@ -15,7 +15,7 @@ function TeamCard({ teamId, teamName, teamPlayers }) {
     return (
         <div className="team-card">
             {logoImage ?
-                <Link to={`/${teamId}`}>
+                <Link to={`/team/${teamId}`}>
                 <img className="team-logo" src={logoImage} alt={`${teamName} logo`} />
                 </Link>
                 :
