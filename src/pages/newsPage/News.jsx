@@ -1,5 +1,5 @@
 import './News.css';
-import InfoTile from "../../components/infoTile/InfoTile.jsx";
+import NewsTile from "../../components/infoTile/NewsTile.jsx";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
@@ -41,15 +41,18 @@ function News() {
     return (
         <div className="outer-container-incl-sponsor">
             <SponsorBar sponsorLocation="left"/>
-            <Header>Laatste Nieuws</Header>
-            <StatusMessage loading={loading} error={error}/>
+            {loading ?
+                <StatusMessage loading={loading} error={error}/>
+                :
+                <Header>Laatste Nieuws</Header>
+            }
             {newsArticles.map((newsArticle, index) => {
 
                 const baseOrientation = index % 2 === 0 ? "left" : "right";
                 return (
                     <article key={newsArticle.id} className={`news-article ${baseOrientation}`}>
                         {newsArticle.content.map((content, tileIndex) => (
-                            <InfoTile
+                            <NewsTile
                                 key={tileIndex}
                                 tileTitle={content.tileType === "text" ? content.title : undefined}
                                 tileImage={content.tileType === "image" ? content.image.src : undefined}
@@ -59,10 +62,8 @@ function News() {
                                 {content.tileType === "text" && content.paragraphs.map((paragraph, i) =>
                                     <p key={i}>{paragraph}</p>
                                 )}
-                            </InfoTile>
+                            </NewsTile>
                         ))}
-                        {newsArticle.length === 0 && loading && <p>Nieuws wordt geladen...</p>}
-                        {newsArticle.length === 0 && error && <p>Er is geen nieuws beschikbaar</p>}
                     </article>
                 );
             })}

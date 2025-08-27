@@ -34,7 +34,6 @@ function useProfileData() {
                 setLeagues(leagueResult.data);
                 setPlayers(playerResult.data);
                 toggleLoading(false);
-                console.log("teams fetched:", teamResult.data);
             } catch (e) {
                 console.error(e);
                 toggleError(true);

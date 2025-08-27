@@ -10,6 +10,12 @@ section {
     justify-content: center;
     align-items: center;
 }
+
+.tile-content h2 {
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
 .news-article {
     display: flex;
     flex-direction: row;

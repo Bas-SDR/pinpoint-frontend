@@ -1,6 +1,6 @@
 import './InfoTile.css';
 
-function InfoTile({tileImage, tileTitle, tileType, imageAltTile, children}) {
+function NewsTile({tileImage, tileTitle, tileType, imageAltTile, children}) {
     return (
         <section className={`hover-effect tile-view ${tileType}`}>
             <img src={tileImage} alt={imageAltTile}/>
@@ -12,4 +12,4 @@ function InfoTile({tileImage, tileTitle, tileType, imageAltTile, children}) {
     );
 }
 
-export default InfoTile;
+export default NewsTile;

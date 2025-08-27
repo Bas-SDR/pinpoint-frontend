@@ -1,7 +1,7 @@
-import './PlayerCard.css';
+import './SmallCard.css';
 import {Link} from "react-router-dom";
 
-function PlayerCard({competition, ranking, averageScore }) {
+function SmallCard({competition, ranking, averageScore }) {
     return (
         <div className="player-card">
             {competition !== "" ? <Link to={`/competitions/${competition}`} className="competition-link"> <h3>{competition}</h3> </Link>: <p>Geen statistieken beschikbaar</p>}
@@ -11,4 +11,4 @@ function PlayerCard({competition, ranking, averageScore }) {
     );
 }
 
-export default PlayerCard;
+export default SmallCard;

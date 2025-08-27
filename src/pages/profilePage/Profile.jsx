@@ -2,7 +2,7 @@ import './Profile.css';
 import profilePic from "../../assets/profile-pic-man1.png"
 import modifySymbol from "../../assets/modify-symbol.png"
 import TeamCard from "../../components/teamCard/TeamCard.jsx";
-import PlayerCard from "../../components/playerCard/PlayerCard.jsx";
+import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import StatsCard from "../../components/statsCard/StatsCard.jsx";
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
@@ -22,8 +22,11 @@ function Profile() {
 
     return (
         <div className="outer-container-excl-sponsor">
-            <Header>Profiel van</Header>
-            <StatusMessage loading={loading} error={error}/>
+            {loading ?
+                <StatusMessage loading={loading} error={error}/>
+                :
+                <Header>Profiel van</Header>
+            }
             {players.length > 0 && <h1>{`${players[userId - 1].firstName} ${players[userId - 1].lastName}`}</h1>}
             {/*TODO Add first and last name from profile page id number*/}
             <div className="inner-profile-container">
@@ -48,7 +51,7 @@ function Profile() {
                                 teamName={team.teamName}
                                 teamPlayers={team.teamPlayers.length}
                             />
-                            <PlayerCard
+                            <SmallCard
                                 competition="Maandag 1"
                                 ranking={team.ranking}
                                 averageScore={currentPlayer.averageScore}
