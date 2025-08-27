@@ -7,6 +7,7 @@ import {useParams} from "react-router-dom";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import NameCard from "../../components/nameCard/NameCard.jsx";
+import BigCard from "../../components/bigCard/BigCard.jsx";
 
 const images = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", { eager: true });
 
@@ -49,6 +50,8 @@ function Team() {
             >
             </SmallCard>
             <h2>Spelers</h2>
+
+
         </div>
     );
 }

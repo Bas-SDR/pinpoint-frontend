@@ -1,16 +1,15 @@
 import './Profile.css';
 import profilePic from "../../assets/profile-pic-man1.png"
 import modifySymbol from "../../assets/modify-symbol.png"
-import TeamCard from "../../components/teamCard/TeamCard.jsx";
 import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import StatsCard from "../../components/statsCard/StatsCard.jsx";
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 import Header from "../../components/header/Header.jsx";
 import useProfileData from "../../hooks/useProfileData.js";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
-// import axios from "axios";
+import BigCard from "../../components/bigCard/BigCard.jsx";
 
 function Profile() {
 
@@ -46,7 +45,8 @@ function Profile() {
                 {playerTeams.length > 0 ? (
                     playerTeams.map(team => (
                         <div key={team.teamId} className="team">
-                            <TeamCard
+                            <BigCard
+                                type="team"
                                 teamId={team.teamId}
                                 teamName={team.teamName}
                                 teamPlayers={team.teamPlayers.length}

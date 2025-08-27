@@ -1,4 +1,4 @@
-import './InfoTile.css';
+import './NewsTile.css';
 
 function NewsTile({tileImage, tileTitle, tileType, imageAltTile, children}) {
     return (

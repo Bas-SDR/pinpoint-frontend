@@ -1,29 +1,68 @@
 import React from "react";
-import "./TeamCard.css";
+import "./BigCard.css";
 import noLogo from "../../assets/teamlogo/nologo.png";
+import noImage from "../../assets/noimage.svg";
 import {Link} from "react-router-dom";
+import {CardType} from "../../constants/CardType.js";
 
-const images = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", { eager: true });
+const teamImages = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", {eager: true});
+const managementImages = import.meta.glob("../../assets/management/*.{png,jpg,jpeg,svg}", {eager: true});
 
-function getImageById(id) {
-    return images[`../../assets/teamlogo/${id}.png`]?.default || null;
+function getTeamImage(id) {
+    return teamImages[`../../assets/teamlogo/${id}.png`]?.default || null;
 }
 
-function BigCard({ teamId, teamName, teamPlayers }) {
-    const logoImage = getImageById(teamId);
+function getManagementImage(id) {
+    return managementImages[`../../assets/management/${id}.svg`]?.default || null;
+}
+
+function BigCard({
+                     type, // "management" | "team"
+                     userId,
+                     userName,
+                     userFunction,
+                     userEmail,
+                     teamId,
+                     teamName,
+                     teamPlayers
+                 }) {
+    const imageSrc = type === "management"
+        ? getManagementImage(userId) || noImage
+        : getTeamImage(teamId) || noLogo;
+
+    const linkTo = type === "management" ? `/profile/${userId}` : `/team/${teamId}`;
+
+    if (!Object.values(CardType).includes(type)) {
+        console.warn(`Invalid BigCard type: ${type}`);
+        return null;
+    }
 
     return (
-        <div className="team-card">
-            {logoImage ?
-                <Link to={`/team/${teamId}`}>
-                    <img className="team-logo" src={logoImage} alt={`${teamName} logo`} />
-                </Link>
-                :
-                <Link to={`/team/${teamId}`}>
-                <img className="team-logo" src={noLogo} alt="No logo"/>
-                </Link>}
-            {teamName ? <h2>{teamName}</h2> : <h2>Geen team</h2>}
-            {teamPlayers && <p>Spelers: {teamPlayers}</p>}
+        <div className={`${type}-card hover-effect`}>
+            <Link to={linkTo}>
+                <img
+                    className={`${type}-logo`}
+                    src={imageSrc}
+                    alt={type === CardType.MANAGEMENT ? `${userName} picture` : `${teamName} logo`}
+                />
+            </Link>
+
+            {type === CardType.MANAGEMENT && (
+                <>
+                    <h3>{userName}</h3>
+                    <h4>Titel:</h4>
+                    <p>{userFunction || "No title available"}</p>
+                    <h4>E-mail:</h4>
+                    <p>{userEmail || "No email available"}</p>
+                </>
+            )}
+
+            {type === CardType.TEAM && (
+                <>
+                    <h2>{teamName || "Geen team"}</h2>
+                    {teamPlayers && <p>Spelers: {teamPlayers}</p>}
+                </>
+            )}
         </div>
     );
 }
