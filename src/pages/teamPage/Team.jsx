@@ -1,22 +1,19 @@
 import './Team.css';
 import Header from "../../components/header/Header.jsx";
-import React, {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import React from "react";
 import useProfileData from "../../hooks/useProfileData.js";
 import {useParams} from "react-router-dom";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import SmallCard from "../../components/smallCard/SmallCard.jsx";
-import NameCard from "../../components/nameCard/NameCard.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
 
-const images = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", { eager: true });
+const images = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", {eager: true});
 
 function getImageById(id) {
     return images[`../../assets/teamlogo/${id}.png`]?.default || null;
 }
 
 function Team() {
-    const {isAuth, userId} = useContext(AuthContext);
     const {teams, leagues, players, loading, error} = useProfileData();
     const {teamId} = useParams();
     const logoImage = getImageById(teamId);
@@ -24,7 +21,7 @@ function Team() {
     console.log(players);
     console.log(teams);
     console.log(leagues);
-    console.log(teams[0]?.teamPlayers[0]?.role)
+    console.log(players[0]?.stats?.averagePinfall)
 
     return (
         <div className="outer-container-excl-sponsor">
@@ -35,22 +32,25 @@ function Team() {
                     Team {teams.find(team => team?.teamId === Number(teamId))?.teamName ?? "Not found"}
                 </Header>
             }
-            <img className="team-logo" src={logoImage} alt={`${teams[teamId]?.teamName} logo`} />
-            <NameCard
-            userId={players[0]?.playerId}
-            userName={`${players[0]?.firstName} ${players[0]?.lastName}`}
-            userFunction={teams[0]?.teamPlayers[0]?.role}
-            userEmail="To follow"
+            <img className="team-logo" src={logoImage} alt={`${teams[teamId]?.teamName} logo`}/>
+            <h2>Spelers</h2>
+            <div>
+            <BigCard
+                type="management"
+                userId={players[0]?.playerId}
+                userName={`${players[0]?.firstName} ${players[0]?.lastName}`}
+                userFunction={teams[0]?.teamPlayers[0]?.role}
+                userEmail="To follow"
             >
-            </NameCard>
+            </BigCard>
             <SmallCard
-            // competition={leagues[1].leagueName}
-            // ranking={}
-            // averageScore={}
+                competition={leagues[1]?.leagueName}
+                averageScore={players[0]?.stats?.averagePinfall}
+                highestGame={players[0]?.stats?.highestGame}
+                highestSeries={players[0]?.stats?.highestSeries}
             >
             </SmallCard>
-            <h2>Spelers</h2>
-
+            </div>
 
         </div>
     );

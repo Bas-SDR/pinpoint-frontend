@@ -1,5 +1,5 @@
 import './News.css';
-import NewsTile from "../../components/infoTile/NewsTile.jsx";
+import NewsTile from "../../components/newsTile/NewsTile.jsx";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
 import React, {useEffect, useState} from "react";
 import axios from "axios";

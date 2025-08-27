@@ -51,9 +51,9 @@ function BigCard({
                 <>
                     <h3>{userName}</h3>
                     <h4>Titel:</h4>
-                    <p>{userFunction || "No title available"}</p>
+                    <p>{userFunction || "Geen functie beschikbaar"}</p>
                     <h4>E-mail:</h4>
-                    <p>{userEmail || "No email available"}</p>
+                    <p>{userEmail || "Geen email beschikbaar"}</p>
                 </>
             )}
 
