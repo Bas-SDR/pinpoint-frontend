@@ -5,7 +5,7 @@ import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import StatsCard from "../../components/statsCard/StatsCard.jsx";
 import React, {useContext} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Header from "../../components/header/Header.jsx";
 import useProfileData from "../../hooks/useProfileData.js";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
@@ -15,8 +15,8 @@ function Profile() {
 
     const {isAuth, userId} = useContext(AuthContext);
     const { teams, leagues, players, loading, error } = useProfileData();
-    const currentPlayer = players.find(p => p.playerId === userId);
-    // TODO Change this to check link (profile/1) in order to set the userID.
+    const {playerId} = useParams();
+    const currentPlayer = players.find(player => player.playerId === Number(playerId));
     const playerTeams = currentPlayer ? teams.filter(team => currentPlayer.teamIds.includes(team.teamId)) : [];
 
     return (
@@ -26,7 +26,7 @@ function Profile() {
                 :
                 <Header>Profiel van</Header>
             }
-            {players.length > 0 && <h1>{`${players[userId - 1].firstName} ${players[userId - 1].lastName}`}</h1>}
+            {players.length > 0 && <h1>{`${players[playerId].firstName} ${players[playerId].lastName}`}</h1>}
             {/*TODO Add first and last name from profile page id number*/}
             <div className="inner-profile-container">
                     <span className="image-container">

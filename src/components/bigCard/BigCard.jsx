@@ -50,7 +50,7 @@ function BigCard({
             {type === CardType.MANAGEMENT && (
                 <>
                     <h3>{userName}</h3>
-                    <h4>Titel:</h4>
+                    <h4>Rol:</h4>
                     <p>{userFunction || "Geen functie beschikbaar"}</p>
                     <h4>E-mail:</h4>
                     <p>{userEmail || "Geen email beschikbaar"}</p>
