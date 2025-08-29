@@ -1,28 +1,30 @@
 import {createContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
-        userId: null,
+        userId: undefined,
     });
     const navigate = useNavigate();
 
     function login() {
-        toggleAuth({
+        const newAuth = {
             isAuth: true,
             userId: 1,
-        });
+        };
 
-        navigate('/profile');
+        toggleAuth(newAuth);
+        navigate(`/profile/${newAuth.userId}`); // use the new value
     }
 
     function logout() {
         toggleAuth({
             isAuth: false,
-            userId: null,
+            userId: undefined,
         });
         navigate('/');
     }

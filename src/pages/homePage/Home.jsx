@@ -1,4 +1,5 @@
 import './Home.css';
+import BigCard from "../../components/bigCard/BigCard.jsx";
 
 function Home() {
     return (

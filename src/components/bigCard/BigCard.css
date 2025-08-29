@@ -1,0 +1,139 @@
+/* Team card */
+.team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #250902;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #fdf0ef;
+    box-shadow: 0 2px 6px #0000001a;
+}
+
+.team-card::first-letter {
+    text-transform: uppercase;
+}
+
+.team-logo {
+    display: flex;
+    max-width: 100px;
+    height: auto;
+    max-height: 60px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+/* Management card */
+.management-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #38040E;
+    padding: 10px;
+    text-align: center;
+    width: 220px;
+    height: 320px;
+    box-sizing: border-box;
+    word-break: break-word;
+    box-shadow: 0 6px 12px #00000066;
+    border-radius: 1rem;
+    background-color: #f9f9f9;
+    text-transform: capitalize
+}
+
+.management-card h3 {
+    text-transform: none;
+}
+
+.management-card h4 {
+    text-transform: none;
+}
+
+.management-card p {
+    text-transform: lowercase;
+}
+
+.management-card p::first-letter {
+    text-transform: uppercase;
+}
+
+.management-logo,
+.no-logo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* BigCard combined with SmallCard */
+.team-collection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 40px 80px 40px 80px;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+}
+
+/*Responsive formatting*/
+@media screen and (min-width: 768px) {
+    .team-card {
+        height: 250px;
+    }
+
+    .team-logo {
+        max-height: 70px;
+    }
+}
+
+@media screen and (min-width: 994px) {
+    .team-card {
+        height: 300px;
+    }
+
+    .team-logo {
+        max-height: 80px;
+        max-width: 125px;
+    }
+
+    .management-card {
+        width: 200px;
+        height: 350px;
+    }
+
+    .management-logo,
+    .no-logo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .team-card {
+        height: 350px;
+    }
+
+    .team-logo {
+        max-height: 90px;
+        max-width: 150px;
+    }
+
+    .management-card {
+        width: 250px;
+        height: 400px;
+    }
+
+    .management-logo,
+    .no-logo {
+        width: 250px;
+        height: 250px;
+    }
+}

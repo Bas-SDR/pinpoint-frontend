@@ -3,11 +3,10 @@ import {useNavigate, NavLink} from 'react-router-dom'
 import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import Button from "../button/Button.jsx";
-import button from "../button/Button.jsx";
 
 function NavBar() {
     const navigate = useNavigate();
-    const {isAuth, login, logout} = useContext(AuthContext);
+    const {isAuth, userId, login, logout} = useContext(AuthContext);
     const checkActiveLink = ({isActive}) => isActive === true ? "active-link" : "default-link";
 
     return (
@@ -44,7 +43,7 @@ function NavBar() {
                         {isAuth ?
                             <Button
                                 type="button"
-                                onClick={() => navigate('/profile')}
+                                onClick={() => navigate(`/profile/${userId}`)}
                             >
                                 My profile
                             </Button>
