@@ -9,9 +9,13 @@
     align-items: center;
     padding-top: 10px;
     margin-top: 20px;
-    background: #f8f8f8;
-    z-index: 0;
     flex-shrink: 1;
+    background-color: #EDC9AF;
+    background-image: url('../../assets/wood-pattern-main.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /*    Credit: https://www.transparenttextures.com/wood-pattern.html*/
 }
 
 .sponsor-bar.left {
@@ -32,8 +36,7 @@
         width: 10vw;
         flex-direction: column;
         justify-content: space-around;
-        padding-top: 100px;
-        background-color: #f8f8f8;
+        padding-top: 100px;;
     }
 
     .sponsor-bar.left {

@@ -20,6 +20,7 @@ body {
     font-variation-settings: "wdth" 100;
     color: #AD2831;
     padding-top: 24px;
+    background-color: #F7E7CE;
 }
 
 main {
@@ -29,6 +30,7 @@ main {
 
 .content {
     margin: 80px;
+
 }
 
 nav a,
@@ -51,6 +53,15 @@ nav a:active {
     justify-content: center;
     align-items: center;
     flex-shrink: 1;
+}
+
+.outer-container-incl-sponsor,
+.outer-container-excl-sponsor {
+    background-image: url('./assets/wood-pattern-main.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /*    Credit: https://www.transparenttextures.com/wood-pattern.html*/
 }
 
 .hover-effect:hover {
