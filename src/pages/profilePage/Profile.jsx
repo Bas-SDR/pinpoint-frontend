@@ -26,7 +26,7 @@ function Profile() {
                 :
                 <Header>Profiel van</Header>
             }
-            {players.length > 0 && <h1>{`${players[playerId].firstName} ${players[playerId].lastName}`}</h1>}
+            {players.length > 0 && <h1>{`${currentPlayer?.firstName} ${currentPlayer?.lastName}`}</h1>}
             {/*TODO Add first and last name from profile page id number*/}
             <div className="inner-profile-container">
                     <span className="image-container">

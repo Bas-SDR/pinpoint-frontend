@@ -30,7 +30,9 @@ function Team() {
                     Team {teams.find(team => team?.teamId === Number(teamId))?.teamName ?? "Not found"}
                 </Header>
             }
+            {
             <img className="team-logo" src={logoImage} alt={`${teams[teamId]?.teamName} logo`}/>
+            }
             <h2>Spelers</h2>
 
 
@@ -60,21 +62,7 @@ function Team() {
                 ) : (
                     <h2>No teams have been found</h2>
                 )}
-                <BigCard
-                    type="management"
-                    userId={players[0]?.playerId}
-                    userName={`${players[0]?.firstName} ${players[0]?.lastName}`}
-                    userFunction={teams[0]?.teamPlayers[0]?.role}
-                    userEmail="To follow"
-                />
-                <SmallCard
-                    competition={leagues[1]?.leagueName}
-                    averageScore={players[0]?.stats?.averagePinfall}
-                    highestGame={players[0]?.stats?.highestGame}
-                    highestSeries={players[0]?.stats?.highestSeries}
-                />
             </div>
-
         </div>
     );
 }
