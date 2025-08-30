@@ -50,7 +50,7 @@ function NavBar() {
                             :
                             <Button
                                 type="button"
-                                onClick={login}
+                                onClick={() => navigate(`/signin`)}
                             >
                                 Log in
                             </Button>

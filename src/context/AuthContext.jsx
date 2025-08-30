@@ -16,9 +16,8 @@ function AuthContextProvider({children}) {
             isAuth: true,
             userId: 1,
         };
-
         toggleAuth(newAuth);
-        navigate(`/profile/${newAuth.userId}`); // use the new value
+        navigate(`/profile/${newAuth.userId}`);
     }
 
     function logout() {

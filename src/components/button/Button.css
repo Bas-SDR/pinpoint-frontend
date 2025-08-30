@@ -20,25 +20,29 @@ button:disabled {
 
 input,
 button {
-    font-family: inherit;
+    font-family: inherit
 }
 
 @media screen and (min-width: 768px) {
-    button{
-        padding: 8px 10px;
+    button {
+        font-size: 14px;
+        padding: 6px 16px;
     }
 
 }
 
-@media screen and (min-width: 992px) {
-    button{
-        padding: 10px 16px;
+@media screen and (min-width: 994px) {
+    button {
+        font-size: 16px;
+        padding: 8px 24px;
     }
 
 }
 
 @media screen and (min-width: 1200px) {
     button{
-        padding: 12px 22px;
+        font-size: 20px;
+        padding: 10px 32px;
     }
+
 }

@@ -1,4 +1,4 @@
-.image-container {
+.profile-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
 
 }
 
-.image-container img {
+.profile-image-container img {
     border-radius: 50%;
     width: 15%;
     min-width: 300px;
@@ -18,7 +18,7 @@
     box-shadow: 0 0 10px #02000036;
 }
 
-.team {
+.profile-team {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +32,7 @@
     flex-wrap: wrap;
 }
 
-.team:hover {
+.profile-team:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 10px #0000001f;
 }
@@ -45,7 +45,7 @@
     align-items: center;
 }
 
-.modify-symbol {
+.profile-modify-symbol {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +56,7 @@
     flex-shrink: 0;
 }
 
-.modify-symbol img {
+.profile-modify-symbol img {
     width: 60%;
     height: auto;
 }
