@@ -30,7 +30,19 @@ main {
 
 .content {
     margin: 80px;
+}
 
+section {
+    background-color: #F6F3EF;
+    height: 400px;
+    overflow: hidden;
+    flex-basis: 350px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 nav a,
@@ -60,7 +72,7 @@ nav a:active {
     background-image: url('./assets/wood-pattern-main.png');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     /*    Credit: https://www.transparenttextures.com/wood-pattern.html*/
 }
 
@@ -68,6 +80,58 @@ nav a:active {
     box-shadow: 0 8px 20px #00000040,
     0 0 12px #bc4c2a66;
     transform: translateY(-4px);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: none;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+legend {
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    font-weight: 500;
+    gap: 4px;
+}
+
+input,
+textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #640D14;
+    box-shadow: 0 0 0 2px #640D1433;
 }
 
 /*////////////////////////
@@ -87,6 +151,25 @@ a,
 a:link,
 a:hover {
     text-decoration: none;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1em;
+    color: #250902;
+}
+
+p a {
+    color: #800E13;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+p a:hover,
+p a:focus {
+    color: #640D14;
+    text-decoration-color: #AD2831;
 }
 
 
@@ -109,15 +192,22 @@ h3 {
     font-size: 14px;
 }
 
+@media screen and (min-width: 768px) {
+
+}
+
 @media screen and (min-width: 994px) {
+
     h1 {
-        font-weight: 700;
         font-size: 64px;
     }
 
     h2 {
-        font-weight: 700;
         font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
     }
 
     h1,
@@ -125,22 +215,26 @@ h3 {
         text-align: center;
     }
 
-    .outer-container-incl-sponsor{
+    .outer-container-incl-sponsor {
         padding-left: 10vw;
         padding-right: 10vw;
     }
+
+
 }
 
 @media screen and (min-width: 1200px) {
+    p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
 
     h2 {
-        font-weight: 700;
         font-size: 32px;
     }
 
     h3 {
-        font-weight: 700;
-        font-size: 18px;
+        font-size: 24px;
     }
 
     .outer-container-incl-sponsor {
@@ -151,7 +245,6 @@ h3 {
 
 @media screen and (min-width: 1600px) {
     h3 {
-        font-weight: 700;
         font-size: 24px;
     }
 }

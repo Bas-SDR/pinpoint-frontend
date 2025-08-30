@@ -1,16 +1,3 @@
-section {
-    background-color: #F6F3EF;
-    height: 400px;
-    overflow: hidden;
-    flex-basis: 350px;
-    flex-grow: 1;
-    flex-shrink: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .tile-content h2 {
     word-wrap: break-word;
     overflow-wrap: anywhere;

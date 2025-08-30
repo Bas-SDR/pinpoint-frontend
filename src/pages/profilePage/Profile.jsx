@@ -28,13 +28,13 @@ function Profile() {
             }
             {players.length > 0 && <h1>{`${currentPlayer?.firstName} ${currentPlayer?.lastName}`}</h1>}
             <div className="inner-profile-container">
-                    <span className="image-container">
+                    <span className="profile-image-container">
                     <img src={profilePic} alt="photo of player"/>
                     </span>
                 {isAuth &&
                     //     TODO Replace isAuth with username verification from JWT token
 
-                    <Link to={`/profile/user/${userId}/edit`} className="modify-symbol">
+                    <Link to={`/profile/user/${userId}/edit`} className="profile-modify-symbol">
                         <img src={modifySymbol} alt="wrench symbol"/>
                     </Link>
                     // TODO Replace profile ID with ID from database, and modify to logical link
@@ -43,7 +43,7 @@ function Profile() {
             <div className="team-collection">
                 {playerTeams.length > 0 ? (
                     playerTeams.map(team => (
-                        <div key={team.teamId} className="team">
+                        <div key={team.teamId} className="profile-team">
                             <BigCard
                                 type="team"
                                 teamId={team.teamId}
