@@ -21,3 +21,15 @@
 .competition-link:hover {
     color: #640D14;
 }
+
+@media screen and (min-width: 994px) {
+    .player-card {
+        height: 180px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .player-card {
+        height: 200px;
+    }
+}

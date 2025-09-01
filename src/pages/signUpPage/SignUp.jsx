@@ -12,13 +12,21 @@ function SignUp() {
         formState: {errors}
     } = useForm();
 
+    const onSubmit = (data) => {
+        console.log(data);
+        // register(data.email, data.password);
+        //TODO Add POST to backend and register function to AuthContext.
+    };
+
+
     return (
         <div className="outer-container-incl-sponsor">
             <Header>Registratie</Header>
             <SponsorBar sponsorLocation="left"/>
+            <div className="page-content">
             <h2>Registreer je nu om door te gaan</h2>
             <div className="signup-form">
-            <form onSubmit={handleSubmit((data) => console.log(data))}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent
                     inputType="text"
                     inputName="firstName"
@@ -83,6 +91,7 @@ function SignUp() {
                     Bevestigen
                 </Button>
             </form>
+            </div>
             </div>
             <SponsorBar sponsorLocation="right"/>
         </div>
