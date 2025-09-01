@@ -1,0 +1,12 @@
+.signup-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+.signup-form form {
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+}

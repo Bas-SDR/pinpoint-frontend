@@ -6,6 +6,7 @@ import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import Button from "../../components/button/Button.jsx";
+
 // import isTokenValid from "../../helpers/isTokenValid.js";
 
 function SignIn() {
@@ -47,6 +48,7 @@ function SignIn() {
             setError(true)
         }
     }
+
     //TODO Add axios functionality once backend is setup.
 
     return (
@@ -74,11 +76,11 @@ function SignIn() {
                         onChange={(e) => setPasswordValue(e.target.value)}
                     />
                     {error && <p>E-mail + wachtwoord combinatie is incorrect!</p>}
-                        <Button
-                            onClick={handleSubmit}
-                        >Inloggen
-                        </Button>
-                        <p><Link to="auth/forgot">Wachtwoord vergeten</Link></p>
+                    <Button
+                        onClick={handleSubmit}
+                    >Inloggen
+                    </Button>
+                    <p><Link to="auth/forgot">Wachtwoord vergeten</Link></p>
                 </form>
                 <p>Indien u nog niet geregistreerd ben, klik <Link to="/signup">hier</Link> om te registreren</p>
             </div>
