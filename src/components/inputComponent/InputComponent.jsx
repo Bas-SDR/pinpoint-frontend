@@ -7,17 +7,20 @@ function InputComponent({
                             validationRequired = false,
                             validationMessage,
                             additionalValidation,
+                            placeholder,
+                            className,
                             register,
                             errors,
                             children
                         }) {
     return (
         <>
-            <label htmlFor={inputId}>
+            <label htmlFor={inputId} className={className}>
                 {children}{validationRequired ? "*" : ""}
                 <input
                     type={inputType}
                     id={inputId}
+                    placeholder={placeholder}
                     {...register(
                         inputName,
                         {

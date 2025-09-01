@@ -19,8 +19,8 @@ body {
     font-style: normal;
     font-variation-settings: "wdth" 100;
     color: #AD2831;
-    padding-top: 24px;
     background-color: #F7E7CE;
+
 }
 
 main {
@@ -29,7 +29,7 @@ main {
 }
 
 .content {
-    margin: 80px;
+    padding: 0;
 }
 
 section {
@@ -54,25 +54,34 @@ nav a:active {
 .outer-container-incl-sponsor {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+    padding-top: var(--navbar-height)
 }
 
 .outer-container-excl-sponsor {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-shrink: 1;
+    padding-top: var(--navbar-height);
+    padding-bottom: 20px;
+    width: 100vw
 }
 
 .outer-container-incl-sponsor,
 .outer-container-excl-sponsor {
     background-image: url('./assets/wood-pattern-main.png');
-    background-size: cover;
-    background-position: center;
+    background-size: auto;
+    background-position: top left;
+    background-repeat: repeat;
+    background-attachment: scroll;
     min-height: 100vh;
+    width: 100%;
     /*    Credit: https://www.transparenttextures.com/wood-pattern.html*/
 }
 
@@ -192,7 +201,7 @@ h3 {
     font-size: 14px;
 }
 
-.small-explanation{
+.small-explanation {
     font-size: 12px;
 }
 

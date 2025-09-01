@@ -1,3 +1,7 @@
+:root {
+    --navbar-height: 64px;
+}
+
 .navbar-outer-box {
     background-color: #AD2831;
     display: flex;
