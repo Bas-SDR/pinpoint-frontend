@@ -42,7 +42,15 @@
     .sponsor-bar.left {
         left: 0;
     }
+
     .sponsor-bar.right {
+        right: 0;
+    }
+
+    .sponsor-bar.up {
+        left: 0;
+    }
+    .sponsor-bar.down {
         right: 0;
     }
 }
