@@ -1,5 +1,5 @@
 import './News.css';
-import NewsTile from "../../components/newsTile/NewsTile.jsx";
+import InfoTile from "../../components/infoTile/InfoTile.jsx";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
@@ -52,7 +52,7 @@ function News() {
                 return (
                     <article key={newsArticle.id} className={`news-article ${baseOrientation}`}>
                         {newsArticle.content.map((content, tileIndex) => (
-                            <NewsTile
+                            <InfoTile
                                 key={tileIndex}
                                 tileTitle={content.tileType === "text" ? content.title : undefined}
                                 tileImage={content.tileType === "image" ? content.image.src : undefined}
@@ -62,7 +62,7 @@ function News() {
                                 {content.tileType === "text" && content.paragraphs.map((paragraph, i) =>
                                     <p key={i}>{paragraph}</p>
                                 )}
-                            </NewsTile>
+                            </InfoTile>
                         ))}
                     </article>
                 );
