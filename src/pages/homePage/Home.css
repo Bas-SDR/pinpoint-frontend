@@ -1,0 +1,48 @@
+.homepage-styling {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    align-items: center;
+    gap: 2rem;
+}
+
+.homepage-styling h2,
+.homepage-styling p {
+    max-width: 100%;
+}
+
+.homepage-styling img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+}
+
+.image-block {
+    max-width: 50%;
+}
+
+.image-block img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+@media screen and (min-width: 994px) {
+    .homepage-styling {
+        flex-direction: row;
+        text-align: start;
+    }
+
+    .homepage-styling h2,
+    .homepage-styling p,
+    .homepage-styling img {
+        max-width: 50%;
+    }
+}

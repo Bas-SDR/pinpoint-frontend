@@ -1,6 +1,5 @@
 .sponsor-bar {
     position: static;
-    top: 0;
     bottom: 0;
     width: 100%;
     display: flex;
@@ -14,16 +13,26 @@
     background-image: url('../../assets/wood-pattern-main.png');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: auto;
+    min-height: 150px;
     /*    Credit: https://www.transparenttextures.com/wood-pattern.html*/
 }
 
 .sponsor-bar.left {
-    left: auto;
+    display: none;
 }
 
 .sponsor-bar.right {
-    right: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 80px 0;
+    z-index: 100;
 }
 
 .sponsor-bar .sponsor-banner {
@@ -37,26 +46,32 @@
         flex-direction: column;
         justify-content: space-around;
         padding-top: 100px;;
+        top: 0;
     }
 
     .sponsor-bar.left {
+        display: flex;
         left: 0;
     }
 
     .sponsor-bar.right {
         right: 0;
-    }
-
-    .sponsor-bar.up {
-        left: 0;
-    }
-    .sponsor-bar.down {
-        right: 0;
+        width: 10vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-top: 75px;
+        z-index: 0;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .sponsor-bar{
+        padding-top: 100px;
+        width: 15vw;
+    }
+
+    .sponsor-bar.right{
         padding-top: 100px;
         width: 15vw;
     }

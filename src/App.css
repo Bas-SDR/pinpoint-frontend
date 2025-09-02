@@ -51,15 +51,25 @@ nav a:active {
     color: #ffffff;
 }
 
+.page-content {
+    margin: 2rem auto;
+    padding: 2rem 2rem 160px;
+}
+
+.page-content h3 {
+    margin-bottom: 1rem;
+}
+
+.page-content p {
+    margin-top: 1rem;
+}
+
 .outer-container-incl-sponsor {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: var(--navbar-height)
+    padding: var(--navbar-height) 0 15vh;
 }
 
 .outer-container-excl-sponsor {
@@ -80,6 +90,7 @@ nav a:active {
     background-position: top left;
     background-repeat: repeat;
     background-attachment: scroll;
+    height: auto;
     min-height: 100vh;
     width: 100%;
     /*    Credit: https://www.transparenttextures.com/wood-pattern.html*/
@@ -231,6 +242,11 @@ h3 {
     .outer-container-incl-sponsor {
         padding-left: 10vw;
         padding-right: 10vw;
+    }
+
+    .outer-container-incl-sponsor,
+    .outer-container-excl-sponsor {
+        min-height: 100vh;
     }
 
 
