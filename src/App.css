@@ -51,10 +51,22 @@ nav a:active {
     color: #ffffff;
 }
 
+.page-content {
+    padding: 2rem;
+    margin: 2rem auto;
+}
+
+.page-content h3 {
+    margin-bottom: 1rem;
+}
+
+.page-content p {
+    margin-top: 1rem;
+}
+
 .outer-container-incl-sponsor {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     padding-left: 0;

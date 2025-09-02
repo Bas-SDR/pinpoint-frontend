@@ -40,7 +40,7 @@ function SignIn() {
             <SponsorBar sponsorLocation="right"/>
             <Header>Inloggen</Header>
             <div className="signin-inner-container page-content">
-                <p>Vul hier uw gegevens in om in te loggen:</p>
+                <h3>Vul hier uw gegevens in om in te loggen:</h3>
 
                 <form className="signin-form" onSubmit={handleSubmit(onSubmit)}>
                     <InputComponent
@@ -68,8 +68,9 @@ function SignIn() {
                         Inloggen
                     </Button>
                     <p><Link to="auth/forgot">Wachtwoord vergeten</Link></p>
+                    <p>Indien u nog niet geregistreerd ben, klik <Link to="/signup">hier</Link> om te registreren</p>
                 </form>
-                <p>Indien u nog niet geregistreerd ben, klik <Link to="/signup">hier</Link> om te registreren</p>
+
             </div>
         </div>
     );

@@ -25,7 +25,6 @@ function SignUp() {
             <SponsorBar sponsorLocation="left"/>
             <div className="page-content">
             <h2>Registreer je nu om door te gaan</h2>
-            <div className="signup-form">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent
                     inputType="text"
@@ -91,7 +90,6 @@ function SignUp() {
                     Bevestigen
                 </Button>
             </form>
-            </div>
             </div>
             <SponsorBar sponsorLocation="right"/>
         </div>
