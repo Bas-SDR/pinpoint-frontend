@@ -1,7 +1,7 @@
 import './SmallCard.css';
 import {Link} from "react-router-dom";
 
-function SmallCard({competition, ranking, averageScore, highestGame,highestSeries }) {
+function SmallCard({competition, ranking, averageScore, highestGame,highestSeries, children }) {
     return (
         <div className="player-card">
             {competition !== undefined ? <Link to={`/competitions/${competition}`} className="competition-link"> <h3>{competition}</h3> </Link>: <p>Geen competitie beschikbaar</p>}

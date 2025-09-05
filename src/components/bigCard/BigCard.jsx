@@ -7,6 +7,7 @@ import {CardType} from "../../constants/CardType.js";
 
 const teamImages = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", {eager: true});
 const managementImages = import.meta.glob("../../assets/management/*.{png,jpg,jpeg,svg}", {eager: true});
+const leagueImages = import.meta.glob("../../assets/league/*.{png,jpg,jpeg,svg}", {eager: true});
 
 function getTeamImage(id) {
     return teamImages[`../../assets/teamlogo/${id}.png`]?.default || null;
@@ -14,6 +15,10 @@ function getTeamImage(id) {
 
 function getManagementImage(id) {
     return managementImages[`../../assets/management/${id}.svg`]?.default || null;
+}
+
+function getLeagueImage(id) {
+    return leagueImages[`../../assets/league/${id}.svg`]?.default || null;
 }
 
 function BigCard({
@@ -24,17 +29,36 @@ function BigCard({
                      userEmail,
                      teamId,
                      teamName,
-                     teamPlayers
+                     teamPlayers,
+                     leagueId,
+                     leagueName,
+                     leagueMembers,
+                     leagueFirst,
                  }) {
-    const imageSrc = type === "management"
-        ? getManagementImage(userId) || noImage
-        : getTeamImage(teamId) || noLogo;
 
-    const linkTo = type === "management" ? `/profile/${userId}` : `/team/${teamId}`;
+    let imageSrc = "";
+    let linkTo = "";
+    let imgAlt = "";
 
-    if (!Object.values(CardType).includes(type)) {
-        console.warn(`Invalid BigCard type: ${type}`);
-        return null;
+    switch (type) {
+        case CardType.MANAGEMENT:
+            imageSrc = getManagementImage(userId) || noImage;
+            linkTo = `/profile/${userId}`;
+            imgAlt = userName ? `${userName} picture` : "Management picture"
+            break;
+        case CardType.TEAM:
+            imageSrc = getTeamImage(teamId) || noLogo;
+            linkTo = `/team/${teamId}`;
+            imgAlt = teamName ? `${teamName} logo` : "Team logo";
+            break;
+        case CardType.LEAGUE:
+            imageSrc = getLeagueImage(leagueId) || noLogo;
+            linkTo = `/competitions/${leagueId}`;
+            imgAlt = leagueName ? `${leagueName} logo` : "League logo";
+            break;
+        default:
+            console.warn("Invalid BigCard type: ${type}");
+            return null;
     }
 
     return (
@@ -43,7 +67,7 @@ function BigCard({
                 <img
                     className={`${type}-logo`}
                     src={imageSrc}
-                    alt={type === CardType.MANAGEMENT ? `${userName} picture` : `${teamName} logo`}
+                    alt={imgAlt}
                 />
             </Link>
 
@@ -61,6 +85,15 @@ function BigCard({
                 <>
                     <h2>{teamName || "Geen team"}</h2>
                     {teamPlayers && <p>Spelers: {teamPlayers}</p>}
+                </>
+            )}
+
+            {type === CardType.LEAGUE && (
+                <>
+                    <h2>{leagueName}</h2>
+                    <p>Teams: {leagueMembers}</p>
+                    <p>Eerste plaats: {leagueFirst || "Geen informatie beschikbaar"}</p>
+
                 </>
             )}
         </div>
