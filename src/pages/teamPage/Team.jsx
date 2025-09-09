@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
+import getCurrentEntity from "../../helpers/getCurrentPageId.js";
 
 const images = import.meta.glob("../../assets/teamlogo/*.{png,jpg,jpeg,svg}", {eager: true});
 
@@ -17,9 +18,7 @@ function Team() {
     const {teams, leagues, players, loading, error} = useProfileData();
     const {teamId} = useParams();
     const logoImage = getImageById(teamId);
-    const currentTeam = teams.find(team => team.teamId === Number(teamId));
-
-    console.log(currentTeam)
+    const currentTeam = getCurrentEntity(teams, teamId, "teamId");
 
     return (
         <div className="outer-container-excl-sponsor">

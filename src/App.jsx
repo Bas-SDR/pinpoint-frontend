@@ -15,6 +15,7 @@ import {useContext} from "react";
 import Admin from "./pages/adminPage/Admin.jsx";
 import Privacy from "./pages/privacy/Privacy.jsx";
 import Team from "./pages/teamPage/Team.jsx";
+import League from "./pages/leaguePage/League.jsx";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -26,7 +27,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/info" element={<Info/>}/>
-                    <Route path="/competitions" element={<Competitions/>}/>
+                    <Route path="/competitions/" element={<Competitions/>}/>
+                    <Route path="/competitions/:leagueId" element={<League/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/contact" element={<Contact/>}/>
                     <Route path="/signin" element={<SignIn/>}/>

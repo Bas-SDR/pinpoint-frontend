@@ -10,13 +10,14 @@ import Header from "../../components/header/Header.jsx";
 import useProfileData from "../../hooks/useProfileData.js";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
+import getCurrentEntity from "../../helpers/getCurrentPageId.js";
 
 function Profile() {
 
     const {isAuth, userId} = useContext(AuthContext);
     const { teams, leagues, players, loading, error } = useProfileData();
     const {playerId} = useParams();
-    const currentPlayer = players.find(player => player.playerId === Number(playerId));
+    const currentPlayer = getCurrentEntity(players, playerId, "playerId");
     const playerTeams = currentPlayer ? teams.filter(team => currentPlayer.teamIds.includes(team.teamId)) : [];
 
     return (
