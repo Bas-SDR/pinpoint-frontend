@@ -1,0 +1,23 @@
+[
+  { "teamId": 1, "playerId": 1 },
+  { "teamId": 1, "playerId": 5 },
+
+  { "teamId": 2, "playerId": 1 },
+  { "teamId": 2, "playerId": 2 },
+  { "teamId": 2, "playerId": 7 },
+
+  { "teamId": 3, "playerId": 1 },
+  { "teamId": 3, "playerId": 4 },
+  { "teamId": 3, "playerId": 9 },
+
+  { "teamId": 4, "playerId": 3 },
+  { "teamId": 4, "playerId": 4 },
+  { "teamId": 4, "playerId": 10 },
+
+  { "teamId": 5, "playerId": 5 },
+  { "teamId": 5, "playerId": 8 },
+
+  { "teamId": 6, "playerId": 6 },
+  { "teamId": 6, "playerId": 7 },
+  { "teamId": 6, "playerId": 10 }
+]

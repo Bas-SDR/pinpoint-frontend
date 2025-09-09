@@ -1,0 +1,33 @@
+[
+  { "leagueId": 1, "teamId": 1 },
+  { "leagueId": 1, "teamId": 3 },
+  { "leagueId": 1, "teamId": 5 },
+  { "leagueId": 1, "teamId": 6 },
+
+  { "leagueId": 2, "teamId": 2 },
+  { "leagueId": 2, "teamId": 4 },
+  { "leagueId": 2, "teamId": 6 },
+  { "leagueId": 2, "teamId": 1 },
+  { "leagueId": 2, "teamId": 5 },
+
+  { "leagueId": 3, "teamId": 3 },
+  { "leagueId": 3, "teamId": 2 },
+  { "leagueId": 3, "teamId": 6 },
+
+  { "leagueId": 4, "teamId": 4 },
+  { "leagueId": 4, "teamId": 5 },
+  { "leagueId": 4, "teamId": 1 },
+  { "leagueId": 4, "teamId": 2 },
+  { "leagueId": 4, "teamId": 3 },
+  { "leagueId": 4, "teamId": 6 },
+
+  { "leagueId": 5, "teamId": 2 },
+  { "leagueId": 5, "teamId": 5 },
+  { "leagueId": 5, "teamId": 6 },
+  { "leagueId": 5, "teamId": 3 },
+
+  { "leagueId": 6, "teamId": 1 },
+  { "leagueId": 6, "teamId": 4 },
+  { "leagueId": 6, "teamId": 3 },
+  { "leagueId": 6, "teamId": 2 }
+]

@@ -1,0 +1,89 @@
+.table-contents a,
+.table-contents a:link,
+.table-contents a:visited,
+.table-contents a:hover,
+.table-contents a:active {
+    color: #AD2831;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.table-contents a:hover,
+.table-contents a:focus {
+    color: #640D14;
+    text-decoration: underline;
+}
+
+.table-contents table {
+    color: #AD2831;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+}
+
+.table-outer-styling {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px #0000001a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-inner-styling {
+    background-color: #f4f6f8;
+    color: #333333;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px;
+    border-bottom: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.table-inner-styling:hover {
+    background-color: #e8ebee;
+}
+
+.table-styling {
+    padding: 6px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    color: #444444;
+}
+
+.table-outer-styling tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.table-outer-styling tbody tr:nth-child(even) {
+    background-color: #ffe5e5;
+}
+
+.table-outer-styling tbody tr:hover {
+    background-color: #ffd6d6;
+}
+
+.table-inner-styling span {
+    margin-left: 2px;
+    font-size: 0.7rem;
+}
+
+@media screen and (min-width: 994px) {
+    .table-outer-styling {
+        font-size: 0.9rem;
+    }
+
+    .table-inner-styling {
+        padding: 12px;
+    }
+
+    .table-styling {
+        padding: 10px;
+    }
+
+    .table-inner-styling span {
+        font-size: 0.8rem;
+        margin-left: 4px;
+    }
+}

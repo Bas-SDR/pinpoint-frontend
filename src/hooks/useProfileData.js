@@ -6,6 +6,8 @@ function useProfileData() {
     const [teams, setTeams] = useState([]);
     const [leagues, setLeagues] = useState([]);
     const [players, setPlayers] = useState([]);
+    const [leagueTeams, setLeagueTeams] = useState([]);
+    const [teamPlayers, setTeamPlayers] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(true);
 
@@ -18,7 +20,7 @@ function useProfileData() {
         async function fetchProfileData() {
             toggleError(false);
             try {
-                const [teamResult, leagueResult, playerResult] = await Promise.all([
+                const [teamResult, leagueResult, playerResult, leagueTeamsResult, teamPlayersResult,] = await Promise.all([
                     axios.get("/teams.json", {
                          // signal: controller.signal,
                     }),
@@ -28,11 +30,19 @@ function useProfileData() {
                     axios.get("/players.json", {
                          // signal: controller.signal,
                     }),
+                    axios.get("/leagueTeams.json", {
+                        // signal: controller.signal,
+                    }),
+                    axios.get("/teamPlayers.json", {
+                        // signal: controller.signal,
+                    }),
                 ]);
 
                 setTeams(teamResult.data);
                 setLeagues(leagueResult.data);
                 setPlayers(playerResult.data);
+                setLeagueTeams(leagueTeamsResult.data);
+                setTeamPlayers(teamPlayersResult.data);
                 toggleLoading(false);
             } catch (e) {
                 console.error(e);
@@ -48,7 +58,7 @@ function useProfileData() {
 
     }, []);
 
-    return { teams, leagues, players, loading, error };
+    return { teams, leagues, players, leagueTeams, teamPlayers, loading, error };
 }
 
 export default useProfileData;
