@@ -17,8 +17,10 @@ function Profile() {
     const {isAuth, userId} = useContext(AuthContext);
     const { teams, leagues, players, loading, error } = useProfileData();
     const {playerId} = useParams();
-    const currentPlayer = getCurrentEntity(players, playerId, "playerId");
-    const playerTeams = currentPlayer ? teams.filter(team => currentPlayer.teamIds.includes(team.teamId)) : [];
+    const currentPlayer = getCurrentEntity(players, playerId, "id");
+    const playerTeams = currentPlayer?.teams ?? [];
+
+    console.log(players);
 
     return (
         <div className="outer-container-excl-sponsor">
@@ -47,9 +49,9 @@ function Profile() {
                         <div key={team.teamId} className="profile-team">
                             <BigCard
                                 type="team"
-                                teamId={team.teamId}
+                                teamId={team.id}
                                 teamName={team.teamName}
-                                teamPlayers={team.teamPlayers.length}
+                                teamPlayers={team.players?.length}
                             />
                             <SmallCard
                                 competition="Maandag 1"
@@ -66,7 +68,7 @@ function Profile() {
         highestGame={currentPlayer?.stats?.highestGame}
         highestSeries={currentPlayer?.stats?.highestSeries}
         totalPinfall={currentPlayer?.stats?.totalPinfall}
-        averagePinfall={currentPlayer?.stats?.averagePinfall}
+        averagePinfall={currentPlayer?.stats?.averageScore}
         perfectGames={currentPlayer?.stats?.perfectGames}
     />
 

@@ -21,13 +21,13 @@ function useProfileData() {
             toggleError(false);
             try {
                 const [teamResult, leagueResult, playerResult, leagueTeamsResult, teamPlayersResult,] = await Promise.all([
-                    axios.get("/teams.json", {
+                    axios.get("http://localhost:8080/teams", {
                          // signal: controller.signal,
                     }),
-                    axios.get("/leagues.json", {
+                    axios.get("http://localhost:8080/leagues", {
                          // signal: controller.signal,
                     }),
-                    axios.get("/players.json", {
+                    axios.get("http://localhost:8080/players", {
                          // signal: controller.signal,
                     }),
                     axios.get("/leagueTeams.json", {
