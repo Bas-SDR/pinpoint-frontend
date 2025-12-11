@@ -1,5 +1,7 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
+import isTokenValid from "../helpers/isTokenValid.js";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext({});
@@ -7,25 +9,60 @@ export const AuthContext = createContext({});
 function AuthContextProvider({children}) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
-        userId: undefined,
+        userId: null,
+        status: "pending",
     });
     const navigate = useNavigate();
 
-    function login() {
-        const newAuth = {
+    useEffect(() => {
+            const token = localStorage.getItem("token");
+
+            if (token) {
+                const decodedToken = jwtDecode(token);
+                if (isTokenValid(decodedToken)) {
+                    toggleAuth({
+                        isAuth: true,
+                        user: {
+                            email: decodedToken.email,
+                            roles: decodedToken.roles,
+                        },
+                        userId: decodedToken.userId,
+                        status: "done",
+                    });
+                } else {
+                    logout();
+                }
+            } else {
+                toggleAuth({
+                    ...auth,
+                    status: "done",
+                })
+            }
+        }
+        , []);
+
+    function login(userDetails) {
+        localStorage.setItem("token", userDetails.token);
+        toggleAuth({
             isAuth: true,
-            userId: 1,
-        };
-        toggleAuth(newAuth);
-        navigate(`/profile/${newAuth.userId}`);
+            user: {
+                email: userDetails.email,
+                roles: userDetails.roles,
+            },
+            userId: userDetails.userId,
+            status: "done",
+        });
+        navigate(`/profile/${userDetails.userId}`);
     }
 
     function logout() {
         toggleAuth({
             isAuth: false,
-            userId: undefined,
+            userId: null,
+            status: "done",
         });
-        navigate('/');
+        localStorage.removeItem("token");
+        navigate("/");
     }
 
     const contextData = {
@@ -37,7 +74,7 @@ function AuthContextProvider({children}) {
 
     return (
         <AuthContext.Provider value={contextData}>
-            {children}
+            {auth.status === "done" ? children : <p>Loading...</p>}
         </AuthContext.Provider>
     );
 }

@@ -6,43 +6,37 @@ function useProfileData() {
     const [teams, setTeams] = useState([]);
     const [leagues, setLeagues] = useState([]);
     const [players, setPlayers] = useState([]);
-    const [leagueTeams, setLeagueTeams] = useState([]);
-    const [teamPlayers, setTeamPlayers] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(true);
 
     useEffect(() => {
-        // const controller = new AbortController();
-        //TODO Turn on controller once done with rest. Strictmode in main results in error.
+        const controller = new AbortController();
         toggleLoading(true);
         toggleError(false);
 
         async function fetchProfileData() {
             toggleError(false);
             try {
-                const [teamResult, leagueResult, playerResult, leagueTeamsResult, teamPlayersResult,] = await Promise.all([
+                const [
+                    teamResult,
+                    leagueResult,
+                    playerResult,
+                ]
+                    = await Promise.all([
                     axios.get("http://localhost:8080/teams", {
-                         // signal: controller.signal,
+                        signal: controller.signal,
                     }),
                     axios.get("http://localhost:8080/leagues", {
-                         // signal: controller.signal,
+                        signal: controller.signal,
                     }),
                     axios.get("http://localhost:8080/players", {
-                         // signal: controller.signal,
-                    }),
-                    axios.get("/leagueTeams.json", {
-                        // signal: controller.signal,
-                    }),
-                    axios.get("/teamPlayers.json", {
-                        // signal: controller.signal,
+                        signal: controller.signal,
                     }),
                 ]);
 
                 setTeams(teamResult.data);
                 setLeagues(leagueResult.data);
                 setPlayers(playerResult.data);
-                setLeagueTeams(leagueTeamsResult.data);
-                setTeamPlayers(teamPlayersResult.data);
                 toggleLoading(false);
             } catch (e) {
                 console.error(e);
@@ -52,13 +46,13 @@ function useProfileData() {
 
         fetchProfileData();
 
-        // return function cleanup() {
-        //     controller.abort();
-        // }
+        return function cleanup() {
+            controller.abort();
+        }
 
     }, []);
 
-    return { teams, leagues, players, leagueTeams, teamPlayers, loading, error };
+    return {teams, leagues, players, loading, error};
 }
 
 export default useProfileData;
