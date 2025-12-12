@@ -31,7 +31,7 @@ function League() {
             cell: ({row}) => {
                 const team = row.original;
                 return (
-                    <Link to={`/team/${team.id}`}>
+                    <Link to={`/team/${team.teamId}`}>
                         {team.teamName}
                     </Link>
                 );
@@ -49,7 +49,7 @@ function League() {
             cell: ({row}) => {
                 const player = row.original;
                 return (
-                    <Link to={`/profile/${player.id}`}>
+                    <Link to={`/profile/${player.playerId}`}>
                         {player.fullName}
                     </Link>
                 );
