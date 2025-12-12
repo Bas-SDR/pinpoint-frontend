@@ -1,6 +1,6 @@
 import React from "react";
 import './SponsorImage.css';
-import noLogo from "../../assets/teamlogo/nologo.png";
+import noLogo from "../../assets/nologo.png";
 
 function SponsorImage({ logo, sponsorName }) {
     return (

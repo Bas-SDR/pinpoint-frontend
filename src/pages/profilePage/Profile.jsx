@@ -18,6 +18,7 @@ function Profile() {
     const {playerId} = useParams();
     const currentPlayer = getCurrentEntity(players, playerId, "id");
     const playerTeams = currentPlayer?.teams ?? [];
+    console.log(players)
 
     return (
         <div className="outer-container-excl-sponsor">

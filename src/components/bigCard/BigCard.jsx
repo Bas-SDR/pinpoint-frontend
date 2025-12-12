@@ -1,6 +1,6 @@
 import React from "react";
 import "./BigCard.css";
-import noLogo from "../../assets/teamlogo/nologo.png";
+import noLogo from "../../assets/nologo.png";
 import noImage from "../../assets/noimage.svg";
 import {Link} from "react-router-dom";
 import {CardType} from "../../constants/CardType.js";
