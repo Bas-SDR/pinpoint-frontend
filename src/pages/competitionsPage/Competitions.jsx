@@ -1,16 +1,13 @@
 import './Competitions.css';
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React from "react";
 import Header from "../../components/header/Header.jsx";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
-import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import useProfileData from "../../hooks/useProfileData.js";
-import {useParams} from "react-router-dom";
-
 function Competitions() {
 
     const {leagues, loading, error} = useProfileData();
+    console.log(leagues);
 
     return (
         <div className="outer-container-excl-sponsor">
@@ -21,16 +18,16 @@ function Competitions() {
             }
             <div className="team-collection">
                 {leagues.length > 0 ? leagues.map((league) => {
-                        const firstPlace = league.teams?.find(team => team.position === "1st");
+                        const firstPlace = league.leagueTeams  && league.leagueTeams .length > 0 ? league.leagueTeams[0] : null;
 
                         return (
-                            <article key={league?.leagueId}>
+                            <article key={league?.id}>
                                     <BigCard
-                                        leagueId={league?.leagueId}
+                                        leagueId={league?.id}
                                         type="league"
                                         leagueName={league?.leagueName}
                                         leagueMembers={league?.teams?.length}
-                                        leagueFirst={firstPlace.teamName}
+                                        leagueFirst={firstPlace ? firstPlace.teamName : "Nog geen teams"}
                                     />
                             </article>
                         );
