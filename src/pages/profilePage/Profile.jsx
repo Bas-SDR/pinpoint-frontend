@@ -10,6 +10,7 @@ import useProfileData from "../../hooks/useProfileData.js";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
 import getCurrentEntity from "../../helpers/getCurrentPageId.js";
+import noImage from '../../assets/nologo.png';
 
 function Profile() {
 
@@ -18,7 +19,6 @@ function Profile() {
     const {playerId} = useParams();
     const currentPlayer = getCurrentEntity(players, playerId, "id");
     const playerTeams = currentPlayer?.teams ?? [];
-    console.log(players)
 
     return (
         <div className="outer-container-excl-sponsor">
@@ -29,12 +29,12 @@ function Profile() {
             }
             {players.length > 0 && <h1>{`${currentPlayer?.firstName} ${currentPlayer?.lastName}`}</h1>}
             <div className="inner-profile-container">
-                    <span className="profile-image-container">
-            <img
-                src={currentPlayer?.profilePicture && `http://localhost:8080${currentPlayer.profilePicture}`}
-                alt="photo of player"
-            />
-                    </span>
+                <span className="profile-image-container">
+                    <img
+                        src={currentPlayer?.profilePicture ? `http://localhost:8080${currentPlayer.profilePicture}` : noImage}
+                        alt="photo of player"
+                    />
+                </span>
                 {isAuth && parseInt(playerId) === userId &&
                     <Link to={`/profile/${userId}/edit`} className="profile-modify-symbol">
                         <img src={modifySymbol} alt="wrench symbol"/>
@@ -50,6 +50,7 @@ function Profile() {
                                 teamId={team.id}
                                 teamName={team.teamName}
                                 teamPlayers={team.players?.length}
+                                teamPic={team.teamPic}
                             />
                             <SmallCard
                                 leagues={team.leagues}
