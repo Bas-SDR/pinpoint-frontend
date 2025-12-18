@@ -1,11 +1,17 @@
 import './Admin.css';
-import SponsorImage from "../../components/sponsorImage/SponsorImage.jsx";
+import Header from "../../components/header/Header.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function Admin() {
     return (
-        <>
-            <h1>Dit is de admin page</h1>
-        </>
+        <div className="outer-container-incl-sponsor">
+            <Header>Admin</Header>
+            <div className="page-content">
+                <Button>
+                    Create League
+                </Button>
+            </div>
+        </div>
     );
 }
 
