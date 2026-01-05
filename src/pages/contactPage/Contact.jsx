@@ -15,7 +15,7 @@ function Contact() {
 
     const onSubmit = (data) => {
         console.log(data);
-        //TODO Add POST to backend.
+        //TODO Placeholder for future, no POST possibility made in backend.
     };
 
     return (

@@ -1,77 +1,103 @@
 import './Profile.css';
-import profilePic from "../../assets/profile-pic-man1.png"
 import modifySymbol from "../../assets/modify-symbol.png"
 import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import StatsCard from "../../components/statsCard/StatsCard.jsx";
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {Link, useParams} from "react-router-dom";
 import Header from "../../components/header/Header.jsx";
-import useProfileData from "../../hooks/useProfileData.js";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
-import getCurrentEntity from "../../helpers/getCurrentPageId.js";
+
+import noImage from '../../assets/nologo.png';
+import axios from "axios";
 
 function Profile() {
 
-    const {isAuth, userId} = useContext(AuthContext);
-    const { teams, leagues, players, loading, error } = useProfileData();
-    const {playerId} = useParams();
-    const currentPlayer = getCurrentEntity(players, playerId, "playerId");
-    const playerTeams = currentPlayer ? teams.filter(team => currentPlayer.teamIds.includes(team.teamId)) : [];
+    const { isAuth, userId } = useContext(AuthContext);
+    const { playerId } = useParams();
 
+    const [currentPlayer, setCurrentPlayer] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const controller = new AbortController();
+        setLoading(true);
+        setError(false);
+
+        async function fetchPlayer() {
+            try {
+                const result = await axios.get(`http://localhost:8080/players/${playerId}`, {
+                    signal: controller.signal
+                });
+                setCurrentPlayer(result.data);
+                setLoading(false);
+            } catch (e) {
+                    console.error(e);
+                    setError(true);
+                    setLoading(false);
+                }
+            }
+
+        fetchPlayer();
+
+        return function cleanUp() {
+            controller.abort();
+        }
+    }, [playerId]);
+
+    const playerTeams = currentPlayer?.teams ?? [];
     return (
         <div className="outer-container-excl-sponsor">
-            {loading ?
-                <StatusMessage loading={loading} error={error}/>
-                :
-                <Header>Profiel van</Header>
-            }
-            {players.length > 0 && <h1>{`${currentPlayer?.firstName} ${currentPlayer?.lastName}`}</h1>}
-            <div className="inner-profile-container">
-                    <span className="profile-image-container">
-                    <img src={profilePic} alt="photo of player"/>
-                    </span>
-                {isAuth &&
-                    //     TODO Replace isAuth with username verification from JWT token
+            {loading ? <StatusMessage loading={loading} error={error} /> : <Header>Profiel van</Header>}
 
-                    <Link to={`/profile/user/${userId}/edit`} className="profile-modify-symbol">
+            {currentPlayer && <h1>{`${currentPlayer.firstName} ${currentPlayer.lastName}`}</h1>}
+
+            <div className="inner-profile-container">
+                <span className="profile-image-container">
+                    <img
+                        src={currentPlayer?.profilePicture ? `http://localhost:8080${currentPlayer.profilePicture}` : noImage}
+                        alt="photo of player"
+                    />
+                </span>
+                {isAuth && parseInt(playerId) === userId && (
+                    <Link to={`/profile/${userId}/edit`} className="profile-modify-symbol">
                         <img src={modifySymbol} alt="wrench symbol"/>
                     </Link>
-                    // TODO Replace profile ID with ID from database, and modify to logical link
-                }
+                )}
             </div>
+
             <div className="team-collection">
                 {playerTeams.length > 0 ? (
                     playerTeams.map(team => (
-                        <div key={team.teamId} className="profile-team">
+                        <div key={team.id} className="profile-team">
                             <BigCard
                                 type="team"
-                                teamId={team.teamId}
+                                teamId={team.id}
                                 teamName={team.teamName}
-                                teamPlayers={team.teamPlayers.length}
+                                teamPlayers={team.players?.length}
+                                teamPic={team.teamPic}
                             />
-                            <SmallCard
-                                competition="Maandag 1"
-                                ranking={team.ranking}
-                                averageScore={currentPlayer.averageScore}
-                            />
+                            <SmallCard leagues={team.leagues} />
                         </div>
                     ))
                 ) : (
                     <h3>Deze speler is geen lid van een team.</h3>
                 )}
             </div>
-    <StatsCard
-        highestGame={currentPlayer?.stats?.highestGame}
-        highestSeries={currentPlayer?.stats?.highestSeries}
-        totalPinfall={currentPlayer?.stats?.totalPinfall}
-        averagePinfall={currentPlayer?.stats?.averagePinfall}
-        perfectGames={currentPlayer?.stats?.perfectGames}
-    />
 
-</div>
-);
+            {currentPlayer?.stats && (
+                <StatsCard
+                    highestGame={currentPlayer.stats.highestGame}
+                    highestSeries={currentPlayer.stats.highestSeries}
+                    totalPinfall={currentPlayer.stats.totalPinfall}
+                    averagePinfall={currentPlayer.stats.averageScore}
+                    perfectGames={currentPlayer.stats.perfectGames}
+                />
+            )}
+        </div>
+    );
 }
 
 export default Profile;

@@ -4,21 +4,45 @@ import Button from "../../components/button/Button.jsx";
 import Header from "../../components/header/Header.jsx";
 import SponsorBar from "../../components/sponsorBar/SponsorBar.jsx";
 import InputComponent from "../../components/inputComponent/InputComponent.jsx";
+import React, {useState} from "react";
+import axios from "axios";
 
 function SignUp() {
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+    const [accountCreated, setAccountCreated] = useState(false);
+    const [name, setName] = useState("")
+
     const {
         register,
         handleSubmit,
         formState: {errors}
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // register(data.email, data.password);
-        //TODO Add POST to backend and register function to AuthContext.
+    const onSubmit = async (data) => {
+        setError(false);
+
+        try {
+            await axios.post("http://localhost:8080/users", {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                password: data.password,
+                dob: data.dob,
+                phone: data.phone
+            });
+            setName(data.firstName);
+            setAccountCreated(true);
+
+        } catch (e) {
+            setError(true);
+            if (e.response && e.response.data) {
+                setErrorMsg(e.response.data);
+            } else {
+                setErrorMsg("Er is iets misgegaan, probeer het later opnieuw.");
+            }
+        }
     };
-
-
     return (
         <div className="outer-container-incl-sponsor">
             <Header>Registratie</Header>
@@ -26,6 +50,7 @@ function SignUp() {
             <div className="page-content">
             <h2>Registreer je nu om door te gaan</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+                {error && <p className="error-message">{errorMsg}</p>}
                 <InputComponent
                     inputType="text"
                     inputName="firstName"
@@ -62,8 +87,21 @@ function SignUp() {
                     Email
                 </InputComponent>
                 <InputComponent
+                    inputType="password"
+                    inputName="password"
+                    inputId="password"
+                    validationRequired={true}
+                    validationMessage="Dit veld is verplicht"
+                    additionalValidation={{
+                    minLength: {value: 8, message: "Wachtwoord moet minimaal 8 tekens zijn"},
+                    maxLength: {value: 64, message: "Wachtwoord mag maximaal 64 tekens zijn"}}}
+                    register={register}
+                    errors={errors}>
+                    Wachtwoord
+                </InputComponent>
+                <InputComponent
                     inputType="date"
-                    inputName="birthday"
+                    inputName="dob"
                     inputId="birthday-field"
                     validationRequired={false}
                     register={register}
@@ -73,7 +111,7 @@ function SignUp() {
                 </InputComponent>
                 <InputComponent
                     inputType="phone"
-                    inputName="phoneNumber"
+                    inputName="phone"
                     inputId="phone-field"
                     validationRequired={false}
                     additionalValidation={{
@@ -89,6 +127,7 @@ function SignUp() {
                     type="submit">
                     Bevestigen
                 </Button>
+                {accountCreated && <p>Welkom {name}, je account is succesvol aangemaakt!</p>}
             </form>
             </div>
             <SponsorBar sponsorLocation="right"/>

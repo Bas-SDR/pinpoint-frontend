@@ -1,78 +1,74 @@
 import {useMemo} from "react";
 
-function useLeagueTables(currentLeague, teams, players, leagueTeams, teamPlayers) {
+function useLeagueTables(currentLeague, teams, players) {
 
     const teamsForTable = useMemo(() => {
         if (!currentLeague) return [];
 
-        const leagueTeamsInCurrentLeague = leagueTeams.filter(
-            (leagueTeam) => leagueTeam.leagueId === currentLeague.leagueId
-        );
+        const leagueTeamsInCurrentLeague = currentLeague.leagueTeams;
 
-        return leagueTeamsInCurrentLeague.map((leagueTeam) => {
-            const team = teams.find((singleTeam) => singleTeam.teamId === leagueTeam.teamId);
+        return leagueTeamsInCurrentLeague.map((leagueTeam, index) => {
+            const team = teams.find((singleTeam) => singleTeam.id === leagueTeam.id);
+
             const teamName = team?.teamName ?? "Onbekende team";
 
-            const playersInTeam = teamPlayers.filter(
-                (teamPlayer) => teamPlayer.teamId === leagueTeam.teamId
+            const playersInTeam = players.filter((player) =>
+                player.teams?.find(
+                    (playerTeam) =>
+                        playerTeam.id === leagueTeam.id &&
+                        playerTeam.leagues?.find(
+                            (league) => league.id === currentLeague.id
+                        )
+                )
             );
 
-            const playerNames = playersInTeam.map((teamPlayer) => {
-                const player = players.find((singlePlayer) => singlePlayer.playerId === teamPlayer.playerId);
-                return player ? `${player.firstName} ${player.lastName}` : "Onbekende speler";
-            });
-
-            const leagueTeamData = currentLeague.teams.find(
-                (leagueTeamEntry) => leagueTeamEntry.teamId === leagueTeam.teamId
+            const playerNames = playersInTeam.map(
+                (player) => `${player.firstName} ${player.lastName}`
             );
-            const position = leagueTeamData?.position ?? "Onbekend";
 
             return {
-                teamId: team?.teamId,
+                teamId: team?.id,
                 teamName,
                 players: playerNames.join(", "),
                 teamSize: playerNames.length,
-                position,
+                position: index + 1, //TODO Placeholder, stats for teams / league needed to create position.
             };
         });
-    }, [currentLeague, leagueTeams, teams, teamPlayers, players]);
+    }, [currentLeague, teams, players]);
+
 
 
     const playersForTable = useMemo(() => {
         if (!currentLeague) return [];
 
-        const teamIdsInCurrentLeague = leagueTeams
-            .filter((leagueTeam) => leagueTeam.leagueId === currentLeague.leagueId)
-            .map((leagueTeam) => leagueTeam.teamId);
+        return players
+            .map((player) => {
+                const playerTeamsInLeague = player.teams?.filter((team) =>
+                    team.leagues?.find(
+                        (league) => league.id === currentLeague.id
+                    )
+                );
 
-        const tableData = players.map((player) => {
-            const playerTeamsInLeague = teamPlayers.filter(
-                (teamPlayer) => teamPlayer.playerId === player.playerId && teamIdsInCurrentLeague.includes(teamPlayer.teamId)
-            );
+                if (!playerTeamsInLeague || playerTeamsInLeague.length === 0)
+                    return null;
 
-            if (playerTeamsInLeague.length === 0) return null;
+                const teamNames = playerTeamsInLeague
+                    .map((team) => team.teamName)
+                    .filter(Boolean);
 
-            const teamNames = playerTeamsInLeague.map((teamPlayer) => {
-                const team = teams.find((singleTeam) => singleTeam.teamId === teamPlayer.teamId);
-                return team?.teamName;
-            }).filter(Boolean);
-
-            return {
-                playerId: player.playerId,
-                fullName: `${player.firstName} ${player.lastName}`,
-                averageScore: player.averageScore,
-                highestGame: player.stats.highestGame,
-                highestSeries: player.stats.highestSeries,
-                perfectGames: player.stats.perfectGames,
-                totalPinfall: player.stats.totalPinfall,
-                teams: teamNames.join(", "),
-            };
-        });
-
-        return tableData.filter(Boolean);
-    }, [currentLeague, leagueTeams, teams, teamPlayers, players]);
-
-
+                return {
+                    playerId: player.id,
+                    fullName: `${player.firstName} ${player.lastName}`,
+                    averageScore: player.stats?.averageScore ?? 0,
+                    highestGame: player.stats?.highestGame ?? 0,
+                    highestSeries: player.stats?.highestSeries ?? 0,
+                    perfectGames: player.stats?.perfectGames ?? 0,
+                    totalPinfall: player.stats?.totalPinfall ?? 0,
+                    teams: teamNames.join(", "),
+                };
+            })
+            .filter(Boolean);
+    }, [currentLeague, players]);
 
     return { teamsForTable, playersForTable };
 }

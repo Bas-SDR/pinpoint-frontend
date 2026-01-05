@@ -14,16 +14,14 @@ import {
 } from "@tanstack/react-table";
 
 function League() {
-    const {leagues, teams, players, leagueTeams, teamPlayers, loading, error} = useProfileData();
+    const {leagues = [], teams = [], players = [], loading, error} = useProfileData();
     const {leagueId} = useParams();
-    const currentLeague = getCurrentEntity(leagues, leagueId, "leagueId");
+    const currentLeague = getCurrentEntity(leagues, leagueId, "id");
 
-    const {teamsForTable, playersForTable} = useLeagueTable(
+    const {teamsForTable = [], playersForTable = []} = useLeagueTable(
         currentLeague,
         teams,
-        players,
-        leagueTeams,
-        teamPlayers
+        players
     );
 
     const teamColumns = useMemo(() => [
