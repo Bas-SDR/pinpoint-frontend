@@ -18,7 +18,8 @@ import Team from "./pages/teamPage/Team.jsx";
 import League from "./pages/leaguePage/League.jsx";
 
 function App() {
-    const { isAuth } = useContext(AuthContext);
+    const { isAuth, roles } = useContext(AuthContext);
+    const isAdmin = roles?.includes("ROLE_ADMIN");
 
     return (
         <>
@@ -35,7 +36,7 @@ function App() {
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/profile/:playerId" element={isAuth ? <Profile/> : <Navigate to="/" />}/>
                     <Route path="/team/:teamId" element={isAuth ? <Team/> : <Team/>}/>
-                    <Route path="/admin" element={isAuth ? <Admin/> : <Navigate to="/" />}/> {/*TODO Make check on role instead of isAuth*/}
+                    <Route path="/admin" element={isAdmin ? <Admin/> : <Navigate to="/" />}/>
                     <Route path="/privacy" element={<Privacy/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
