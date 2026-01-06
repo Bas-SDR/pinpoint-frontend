@@ -14,7 +14,7 @@ import axios from "axios";
 
 function Profile() {
 
-    const { isAuth, userId } = useContext(AuthContext);
+    const { isAuth, roles, userId } = useContext(AuthContext);
     const { playerId } = useParams();
 
     const [currentPlayer, setCurrentPlayer] = useState(null);
@@ -61,8 +61,8 @@ function Profile() {
                         alt="photo of player"
                     />
                 </span>
-                {isAuth && parseInt(playerId) === userId && (
-                    <Link to={`/profile/${userId}/edit`} className="profile-modify-symbol">
+                {isAuth && (parseInt(playerId) === userId || roles.includes("ROLE_ADMIN")) && (
+                    <Link to={`/profile/${playerId}/edit`} className="profile-modify-symbol">
                         <img src={modifySymbol} alt="wrench symbol"/>
                     </Link>
                 )}
