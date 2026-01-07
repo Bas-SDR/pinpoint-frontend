@@ -1,6 +1,6 @@
 import './Team.css';
 import Header from "../../components/header/Header.jsx";
-import React from "react";
+import React, {useContext, useState} from "react";
 import useProfileData from "../../hooks/useProfileData.js";
 import {useParams} from "react-router-dom";
 import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
@@ -8,11 +8,69 @@ import SmallCard from "../../components/smallCard/SmallCard.jsx";
 import BigCard from "../../components/bigCard/BigCard.jsx";
 import getCurrentEntity from "../../helpers/getCurrentPageId.js";
 import noLogo from '../../assets/nologo.png';
+import {AuthContext} from "../../context/AuthContext.jsx";
+import axios from "axios";
+import Button from "../../components/button/Button.jsx";
 
 function Team() {
     const {teams, players, loading, error} = useProfileData();
     const {teamId} = useParams();
+    const {userId, roles} = useContext(AuthContext);
+
+    const [errorState, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+    const [successMsg, setSuccessMsg] = useState("");
+
+    const token = localStorage.getItem("token");
     const currentTeam = getCurrentEntity(teams, teamId, "id");
+
+    async function kickPlayer(player) {
+        setError(false);
+        setErrorMsg("");
+        setSuccessMsg("");
+        try {
+            await axios.patch(
+                `http://localhost:8080/teams/${currentTeam.id}/kick/${player.id}`,
+                {},
+                {headers: {Authorization: `Bearer ${token}`}}
+            );
+            setSuccessMsg(`${player.firstName} ${player.lastName} is succesvol verwijderd.`);
+        } catch (e) {
+            console.error(e);
+            setError(true);
+            setErrorMsg("Kick mislukt.");
+        }
+    }
+
+    async function leaveTeam(player) {
+        try {
+            await axios.patch(
+                `http://localhost:8080/teams/${currentTeam.id}/leave/${player.id}`,
+                {},
+                {headers: {Authorization: `Bearer ${token}`}}
+            );
+            setSuccessMsg(`Je hebt succesvol het team verlaten.`);
+        } catch (e) {
+            console.error(e);
+            setError(true);
+            setErrorMsg("Team verlaten mislukt.");
+        }
+    }
+
+    async function promoteToCaptain(player) {
+        try {
+            await axios.patch(
+                `http://localhost:8080/teams/${currentTeam.id}`,
+                {captainId: player.id},
+                {headers: {Authorization: `Bearer ${token}`}}
+            );
+            setSuccessMsg(`Speler ${player.firstName} ${player.lastName} is succesvol captain gemaakt`);
+        } catch (e) {
+            console.error(e);
+            setError(true);
+            setErrorMsg("Captain maken mislukt.");
+        }
+    }
 
     return (
         <div className="outer-container-excl-sponsor">
@@ -31,18 +89,19 @@ function Team() {
                 />
             }
             <h2>Spelers</h2>
-
-            <div className="team-collection">
+            {successMsg && <p className="success-message">{successMsg}</p>}
+            {errorState && <p className="error-message">{errorMsg}</p>}
+            <div className="team-collection team-page">
                 {currentTeam ? (
                     players
                         .filter(player => player.teams.find(team => team.id === currentTeam.id))
                         .map(player => (
-                            <div key={player.id}>
+                            <div className="team-card-container" key={player.id}>
                                 <BigCard
                                     type="management"
                                     userId={player.id}
                                     userName={`${player.firstName} ${player.lastName}`}
-                                    userFunction="Member"
+                                    userFunction={currentTeam?.captainId === player.id ? "Captain" : "Speler"}
                                     userEmail="To follow"
                                 />
                                 <SmallCard
@@ -50,10 +109,33 @@ function Team() {
                                     highestGame={player.stats.highestGame}
                                     highestSeries={player.stats.highestSeries}
                                 />
+                                <div className="button-container">
+                                    {player.id === userId && (
+                                        <Button
+                                            onClick={() => leaveTeam(player)}
+                                        >
+                                            Verlaat team
+                                        </Button>
+                                    )}
+                                    {(roles.includes("ROLE_ADMIN") || currentTeam.captainId === userId) && (
+                                        <Button
+                                            onClick={() => kickPlayer(player)}
+                                        >
+                                            Kick speler
+                                        </Button>
+                                    )}
+                                    {(roles.includes("ROLE_ADMIN") || currentTeam.captainId === userId) && (
+                                        <Button
+                                            onClick={() => promoteToCaptain(player)}
+                                        >
+                                            Maak captain
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
                         ))
                 ) : (
-                    <h2>No teams have been found</h2>
+                    <h2>Geen teams gevonden</h2>
                 )}
             </div>
         </div>
