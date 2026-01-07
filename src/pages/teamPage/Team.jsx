@@ -57,6 +57,21 @@ function Team() {
         }
     }
 
+    async function promoteToCaptain(player) {
+        try {
+            await axios.patch(
+                `http://localhost:8080/teams/${currentTeam.id}`,
+                {captainId: player.id},
+                {headers: {Authorization: `Bearer ${token}`}}
+            );
+            setSuccessMsg(`Speler ${player.firstName} ${player.lastName} is succesvol captain gemaakt`);
+        } catch (e) {
+            console.error(e);
+            setError(true);
+            setErrorMsg("Captain maken mislukt.");
+        }
+    }
+
     return (
         <div className="outer-container-excl-sponsor">
             {loading ?
@@ -76,12 +91,12 @@ function Team() {
             <h2>Spelers</h2>
             {successMsg && <p className="success-message">{successMsg}</p>}
             {errorState && <p className="error-message">{errorMsg}</p>}
-            <div className="team-collection">
+            <div className="team-collection team-page">
                 {currentTeam ? (
                     players
                         .filter(player => player.teams.find(team => team.id === currentTeam.id))
                         .map(player => (
-                            <div key={player.id}>
+                            <div className="team-card-container" key={player.id}>
                                 <BigCard
                                     type="management"
                                     userId={player.id}
@@ -94,21 +109,29 @@ function Team() {
                                     highestGame={player.stats.highestGame}
                                     highestSeries={player.stats.highestSeries}
                                 />
-                                {player.id === userId && (
+                                <div className="button-container">
+                                    {player.id === userId && (
                                         <Button
                                             onClick={() => leaveTeam(player)}
                                         >
                                             Verlaat team
                                         </Button>
-                                )}
-
-                                {(roles.includes("ROLE_ADMIN") || currentTeam.captainId === userId) && (
+                                    )}
+                                    {(roles.includes("ROLE_ADMIN") || currentTeam.captainId === userId) && (
                                         <Button
                                             onClick={() => kickPlayer(player)}
                                         >
                                             Kick speler
                                         </Button>
-                                )}
+                                    )}
+                                    {(roles.includes("ROLE_ADMIN") || currentTeam.captainId === userId) && (
+                                        <Button
+                                            onClick={() => promoteToCaptain(player)}
+                                        >
+                                            Maak captain
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
                         ))
                 ) : (
