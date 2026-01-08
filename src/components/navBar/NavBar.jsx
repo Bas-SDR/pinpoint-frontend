@@ -6,9 +6,10 @@ import Button from "../button/Button.jsx";
 
 function NavBar() {
     const navigate = useNavigate();
-    const {isAuth, userId, login, logout} = useContext(AuthContext);
+    const {isAuth, userId, roles, logout} = useContext(AuthContext);
     const checkActiveLink = ({isActive}) => isActive === true ? "active-link" : "default-link";
 
+    console.log(roles)
     return (
         <>
             <nav className="navbar-outer-box">
@@ -34,10 +35,11 @@ function NavBar() {
                         <li>
                             <NavLink to="/contact" className={checkActiveLink}>Contact</NavLink>
                         </li>
-                        {isAuth === true && //TODO Add check for role in JWT instead of login status.
+                        {isAuth === true && roles.includes("ROLE_ADMIN") && (
                         <li>
                             <NavLink to="/admin" className={checkActiveLink}>Admin</NavLink>
-                        </li>}
+                        </li>
+                        )}
                     </ul>
                     <div>
                         {isAuth ?
