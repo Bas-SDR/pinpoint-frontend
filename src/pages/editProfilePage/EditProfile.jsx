@@ -42,7 +42,7 @@ function EditProfile() {
                 setValue("dob", data.dob);
                 setValue("phone", data.phone);
                 setLoading(false);
-                setProfilePic(data.profilePic || "");
+                setProfilePic(data.profilePic);
 
             } catch (e) {
                 console.error(e);
@@ -134,7 +134,9 @@ function EditProfile() {
                 <Header>Profiel bewerken</Header>
             }
             <div className="page-content">
-                {profilePic && <img src={profilePic} alt="Profielfoto"/>}
+                <span className="profile-image-container">
+                {profilePic && <img src={`http://localhost:8080${profilePic}`} alt="Profielfoto"/>}
+                </span>
                 <input
                     type="file"
                     accept="image/*"
