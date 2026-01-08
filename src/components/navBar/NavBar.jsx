@@ -9,7 +9,6 @@ function NavBar() {
     const {isAuth, userId, roles, logout} = useContext(AuthContext);
     const checkActiveLink = ({isActive}) => isActive === true ? "active-link" : "default-link";
 
-    console.log(roles)
     return (
         <>
             <nav className="navbar-outer-box">

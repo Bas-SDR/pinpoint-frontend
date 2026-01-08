@@ -14,8 +14,8 @@ import axios from "axios";
 
 function Profile() {
 
-    const { isAuth, roles, userId } = useContext(AuthContext);
-    const { playerId } = useParams();
+    const {isAuth, roles, userId} = useContext(AuthContext);
+    const {playerId} = useParams();
 
     const [currentPlayer, setCurrentPlayer] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -34,11 +34,11 @@ function Profile() {
                 setCurrentPlayer(result.data);
                 setLoading(false);
             } catch (e) {
-                    console.error(e);
-                    setError(true);
-                    setLoading(false);
-                }
+                console.error(e);
+                setError(true);
+                setLoading(false);
             }
+        }
 
         fetchPlayer();
 
@@ -50,7 +50,11 @@ function Profile() {
     const playerTeams = currentPlayer?.teams ?? [];
     return (
         <div className="outer-container-excl-sponsor">
-            {loading ? <StatusMessage loading={loading} error={error} /> : <Header>Profiel van</Header>}
+            {loading ?
+                <StatusMessage loading={loading} error={error}/>
+                :
+                <Header>Profiel van</Header>
+            }
 
             {currentPlayer && <h1>{`${currentPlayer.firstName} ${currentPlayer.lastName}`}</h1>}
 
@@ -79,7 +83,7 @@ function Profile() {
                                 teamPlayers={team.players?.length}
                                 teamPic={team.teamPic}
                             />
-                            <SmallCard leagues={team.leagues} />
+                            <SmallCard leagues={team.leagues}/>
                         </div>
                     ))
                 ) : (
