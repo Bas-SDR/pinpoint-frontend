@@ -48,58 +48,61 @@ function Profile() {
     }, [playerId]);
 
     const playerTeams = currentPlayer?.teams ?? [];
+
     return (
         <div className="outer-container-excl-sponsor">
-            {loading ?
+            {loading ? (
                 <StatusMessage loading={loading} error={error}/>
-                :
-                <Header>Profiel van</Header>
-            }
+            ) : (
+                <>
+                    <Header>Profiel van</Header>
 
-            {currentPlayer && <h1>{`${currentPlayer.firstName} ${currentPlayer.lastName}`}</h1>}
-
-            <div className="inner-profile-container">
-                <span className="profile-image-container">
-                    <img
-                        src={currentPlayer?.profilePicture ? `http://localhost:8080${currentPlayer.profilePicture}` : noImage}
-                        alt="photo of player"
-                    />
-                </span>
-                {isAuth && (parseInt(playerId) === userId || roles.includes("ROLE_ADMIN")) && (
-                    <Link to={`/profile/${playerId}/edit`} className="profile-modify-symbol">
-                        <img src={modifySymbol} alt="wrench symbol"/>
-                    </Link>
-                )}
-            </div>
-
-            <div className="team-collection">
-                {playerTeams.length > 0 ? (
-                    playerTeams.map(team => (
-                        <div key={team.id} className="profile-team">
-                            <BigCard
-                                type="team"
-                                teamId={team.id}
-                                teamName={team.teamName}
-                                teamPlayers={team.players?.length}
-                                teamPic={team.teamPic}
+                    {currentPlayer && <h1>{`${currentPlayer.firstName} ${currentPlayer.lastName}`}</h1>}
+                    <div className="inner-profile-container">
+                        <span className="profile-image-container">
+                            <img
+                                src={currentPlayer?.profilePicture ? `http://localhost:8080${currentPlayer.profilePicture}` : noImage}
+                                alt="photo of player"
                             />
-                            <SmallCard leagues={team.leagues}/>
-                        </div>
-                    ))
-                ) : (
-                    <h3>Deze speler is geen lid van een team.</h3>
-                )}
-            </div>
+                        </span>
+                        {isAuth && (parseInt(playerId) === userId || roles.includes("ROLE_ADMIN")) && (
+                            <Link to={`/profile/${playerId}/edit`} className="profile-modify-symbol">
+                                <img src={modifySymbol} alt="wrench symbol"/>
+                            </Link>
+                        )}
+                    </div>
 
-            {currentPlayer?.stats && (
-                <StatsCard
-                    highestGame={currentPlayer.stats.highestGame}
-                    highestSeries={currentPlayer.stats.highestSeries}
-                    totalPinfall={currentPlayer.stats.totalPinfall}
-                    averagePinfall={currentPlayer.stats.averageScore}
-                    perfectGames={currentPlayer.stats.perfectGames}
-                />
+                    <div className="team-collection">
+                        {playerTeams.length > 0 ? (
+                            playerTeams.map(team => (
+                                <div key={team.id} className="profile-team">
+                                    <BigCard
+                                        type="team"
+                                        teamId={team.id}
+                                        teamName={team.teamName}
+                                        teamPlayers={team.players?.length}
+                                        teamPic={team.teamPic}
+                                    />
+                                    <SmallCard leagues={team.leagues}/>
+                                </div>
+                            ))
+                        ) : (
+                            <h3>Deze speler is geen lid van een team.</h3>
+                        )}
+                    </div>
+                    {currentPlayer?.stats &&
+                        (
+                            <StatsCard
+                                highestGame={currentPlayer.stats.highestGame}
+                                highestSeries={currentPlayer.stats.highestSeries}
+                                totalPinfall={currentPlayer.stats.totalPinfall}
+                                averagePinfall={currentPlayer.stats.averageScore}
+                                perfectGames={currentPlayer.stats.perfectGames}
+                            />
+                        )}
+                </>
             )}
+
         </div>
     );
 }
