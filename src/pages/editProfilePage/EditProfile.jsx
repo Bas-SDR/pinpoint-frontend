@@ -1,32 +1,36 @@
 import './EditProfile.css';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import Button from "../../components/button/Button.jsx";
 import Header from "../../components/header/Header.jsx";
 import InputComponent from "../../components/inputComponent/InputComponent.jsx";
-import React, { useEffect, useState, } from "react";
+import React, {useEffect, useState,} from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import StatusMessage from "../../components/statusMessage/StatusMessage.jsx";
 
 function EditProfile() {
-    const { playerId } = useParams();
+    const {playerId} = useParams();
 
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [accountUpdated, setAccountUpdated] = useState(false);
     const [profilePic, setProfilePic] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+    const {register, handleSubmit, formState: {errors}, setValue} = useForm();
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         const controller = new AbortController();
+        setLoading(true);
+        setError(false);
 
         async function fetchProfile() {
             try {
                 const result = await axios.get(
                     `http://localhost:8080/users/${playerId}/private`,
                     {
-                        headers: { Authorization: `Bearer ${token}` },
+                        headers: {Authorization: `Bearer ${token}`},
                         signal: controller.signal
                     }
                 );
@@ -37,12 +41,16 @@ function EditProfile() {
                 setValue("email", data.email);
                 setValue("dob", data.dob);
                 setValue("phone", data.phone);
-                setProfilePic(data.profilePic || "");
+                setLoading(false);
+                setProfilePic(data.profilePic);
+
             } catch (e) {
                 console.error(e);
                 setError(true);
                 setErrorMsg("Er is iets misgegaan bij het ophalen van je profiel.");
+                setLoading(false);
             }
+
         }
 
         fetchProfile();
@@ -86,8 +94,8 @@ function EditProfile() {
         try {
             await axios.patch(
                 `http://localhost:8080/users/${playerId}/password`,
-                { password },
-                { headers: { Authorization: `Bearer ${token}` } }
+                {password},
+                {headers: {Authorization: `Bearer ${token}`}}
             );
         } catch (e) {
             setError(true);
@@ -104,7 +112,7 @@ function EditProfile() {
 
         try {
             await axios.put(`http://localhost:8080/users/${playerId}`, data, {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: {Authorization: `Bearer ${token}`}
             });
 
             if (data.password) {
@@ -120,13 +128,21 @@ function EditProfile() {
 
     return (
         <div className="outer-container-excl-sponsor">
-            <Header>Profiel bewerken</Header>
+            {loading ?
+                <StatusMessage loading={loading} error={error}/>
+                :
+                <Header>Profiel bewerken</Header>
+            }
             <div className="page-content">
-                {profilePic && <img src={profilePic} alt="Profielfoto"/>}
+                <span className="profile-image-container">
+                {profilePic && <img src={`http://localhost:8080${profilePic}`} alt="Profielfoto"/>}
+                </span>
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={function(e) { handleProfilePicUpload(e.target.files[0]); }}
+                    onChange={function (e) {
+                        handleProfilePicUpload(e.target.files[0]);
+                    }}
                 />
                 <form onSubmit={handleSubmit(onSubmit)}>
                     {error && <p className="error-message">{errorMsg}</p>}
@@ -159,7 +175,10 @@ function EditProfile() {
                         validationRequired={true}
                         validationMessage="Dit veld is verplicht"
                         additionalValidation={{
-                            pattern: { value: /^\S+@\S+$/i, message: "Een email moet de volgende format hebben: example@email.com" }
+                            pattern: {
+                                value: /^\S+@\S+$/i,
+                                message: "Een email moet de volgende format hebben: example@email.com"
+                            }
                         }}
                         register={register}
                         errors={errors}
@@ -172,8 +191,8 @@ function EditProfile() {
                         inputId="password-field"
                         validationRequired={false}
                         additionalValidation={{
-                            minLength: { value: 8, message: "Wachtwoord moet minimaal 8 tekens zijn" },
-                            maxLength: { value: 64, message: "Wachtwoord mag maximaal 64 tekens zijn" }
+                            minLength: {value: 8, message: "Wachtwoord moet minimaal 8 tekens zijn"},
+                            maxLength: {value: 64, message: "Wachtwoord mag maximaal 64 tekens zijn"}
                         }}
                         register={register}
                         errors={errors}
