@@ -25,6 +25,13 @@ function Team() {
     const currentTeam = getCurrentEntity(teams, teamId, "id");
 
     async function kickPlayer(player) {
+        //https://www.geeksforgeeks.org/javascript/javascript-window-confirm-method/
+        let result = confirm(
+            `Weet je zeker dat je ${player.firstName} ${player.lastName} uit het team wilt verwijderen?`
+        );
+
+        if (!result) return;
+
         setError(false);
         setErrorMsg("");
         setSuccessMsg("");
@@ -43,6 +50,12 @@ function Team() {
     }
 
     async function leaveTeam(player) {
+        let result = confirm(
+            "Weet je zeker dat je uit het team wilt stappen?"
+        );
+
+        if (!result) return;
+
         try {
             await axios.patch(
                 `http://localhost:8080/teams/${currentTeam.id}/leave/${player.id}`,
@@ -58,6 +71,12 @@ function Team() {
     }
 
     async function promoteToCaptain(player) {
+        let result = confirm(
+            `Weet je zeker dat je ${player.firstName} ${player.lastName} captain wilt maken?`
+        );
+
+        if (!result) return
+
         try {
             await axios.patch(
                 `http://localhost:8080/teams/${currentTeam.id}`,
