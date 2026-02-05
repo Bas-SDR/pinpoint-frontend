@@ -20,6 +20,9 @@ function Team() {
     const [errorState, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
+    const [searchFirstName, setSearchFirstName] = useState("");
+    const [searchLastName, setSearchLastName] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
     const token = localStorage.getItem("token");
     const currentTeam = getCurrentEntity(teams, teamId, "id");
@@ -91,13 +94,54 @@ function Team() {
         }
     }
 
+    async function searchUsers() {
+        setError(false);
+        setErrorMsg("");
+        setSuccessMsg("");
+        try {
+            const response = await axios.get("http://localhost:8080/users/search", {
+                params: {
+                    firstName: searchFirstName.trim() || null,
+                    lastName: searchLastName.trim() || null
+                },
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setSearchResults(response.data);
+        } catch (e) {
+            console.error(e);
+            setError(true);
+            setErrorMsg("Zoeken mislukt.");
+        }
+    }
+
+    async function addPlayer(userId) {
+        setError(false);
+        setErrorMsg("");
+        setSuccessMsg("");
+        try {
+            const response = await axios.post(
+                `http://localhost:8080/teams/${currentTeam.id}/addplayer/${userId}`,
+                {},
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setSuccessMsg(`Speler ${response.data.playerFirstName} ${response.data.playerLastName} toegevoegd aan team ${response.data.teamName}`);
+            setSearchResults([]);
+
+        } catch (e) {
+            console.error(e);
+            setErrorMsg(e.response.data);
+            setError(true);
+        }
+
+    }
+
     return (
         <div className="outer-container-excl-sponsor">
             {loading ?
                 <StatusMessage loading={loading} error={error}/>
                 :
                 <Header>
-                    Team {teams.find(team => team?.id === Number(teamId))?.teamName ?? "Not found"}
+                    Team {teams.find(team => team?.id === Number(teamId))?.teamName ?? "Niet beschikbaar"}
                 </Header>
             }
             {
@@ -157,6 +201,37 @@ function Team() {
                     <h2>Geen teams gevonden</h2>
                 )}
             </div>
+            {(roles?.includes("ROLE_ADMIN") || currentTeam?.captainId === userId) && (
+            <div>
+                <h3>Search and Add Player</h3>
+                <input
+                    type="text"
+                    placeholder="First name"
+                    value={searchFirstName}
+                    onChange={e => setSearchFirstName(e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Last name"
+                    value={searchLastName}
+                    onChange={e => setSearchLastName(e.target.value)}
+                />
+                <Button onClick={searchUsers}>Zoeken</Button>
+
+                {searchResults.length > 0 ? (
+                    <div className="search-results">
+                        {searchResults.map(user => (
+                            <div key={user.id}>
+                                {user.firstName} {user.lastName}
+                                <Button onClick={() => addPlayer(user.id)}>Add</Button>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p>Geen spelers gevonden.</p>
+                )}
+            </div>
+            )}
         </div>
     );
 }
